@@ -1,0 +1,49 @@
+.form-wrap {
+    margin: 0 auto;
+    width: 40%;
+}
+
+.row {
+	margin: 0px;
+}
+
+.form-group {
+	margin-bottom: 8px;
+}
+
+.form-group .col-md-4,  
+.form-group .col-md-6,  
+.form-group .col-md-7,
+.form-group .col-md-9 {
+	padding-left: 0px;
+}
+
+.form-group .control-label {
+	text-align: left;
+	padding-left: 0px;
+	cursor: pointer;
+}
+
+.form-group .radio-inline {
+	padding-top: 0px;
+}
+
+.form-group .left-offset {
+    padding-left: 24px;
+}
+
+.date-birth-left-offset {
+	padding-left: 25px;
+} 
+
+.gender-offset {
+    padding: 6px 0 0 0;
+} 
+
+.address-left-offset {
+    padding-left: 20px;
+}
+
+.address-top-offset {
+	padding-top: 10px;
+}
