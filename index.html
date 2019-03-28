@@ -15,258 +15,300 @@
     <main>
         <form class="form-horizontal form-wrap">
             <div class="row">
-                <div class="form-group">
-                    <label for="surname" class="col-md-3 control-label">Прізвище: </label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="surname" placeholder="Іванов">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="surname" class="col-md-3 control-label">Прізвище: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="surname" placeholder="Іванов">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">Ім'я: </label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="name" placeholder="Іван">
+                    <div class="form-group">
+                        <label for="name" class="col-md-3 control-label">Ім'я: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="name" placeholder="Іван">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="lastName" class="col-md-3 control-label">По-батькові: </label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="lastName" placeholder="Іванов">
+                    <div class="form-group">
+                        <label for="lastName" class="col-md-3 control-label">По-батькові: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="lastName" placeholder="Іванов">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-7">
-                        <label for="dateBirthday" class="col-md-5 control-label">Дата народження: </label>
-                        <div class="col-sm-7 date-birth-left-offset">
+                    <div class="form-group">
+                        <label for="dateBirthday" class="col-md-4 control-label">Дата народження: </label>
+                        <div class="col-md-8">
                             <input type="date" class="form-control" id="dateBirthday" placeholder="01.01.2019">
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="form-group">
                         <label class="col-md-3 control-label">Стать: </label>
-                        <div class="col-sm-9 gender-offset">
+                        <div class="col-md-9">
                             <label class="radio-inline">
                               <input type="radio" name="genderRadios" value="male"> чоловіча
                             </label>
                             <label class="radio-inline">
                               <input type="radio" name="genderRadios" value="female"> жіноча
                             </label>
-                        </div>                        
+                        </div>   
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-md-3 control-label">E-mail: </label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" placeholder="test@fxmed.com">
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">E-mail: </label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" id="email" placeholder="test@fxmed.com">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="phone" class="col-md-3 control-label">Телефон: </label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="phone" placeholder="067-123-45-67">
+                    <div class="form-group">
+                        <label for="phone" class="col-md-3 control-label">Телефон: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="phone" placeholder="067-123-45-67">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-9">
-                        <label for="address" class="col-sm-4 control-label">Адреса: </label>
-                        <div class="col-sm-8 address-left-offset">
+                    <div class="form-group">
+                        <label for="address" class="col-md-3 control-label">Адреса: </label>
+                        <div class="col-md-9">
                             <input type="text" class="form-control" id="address" placeholder="м. Київ, пр. Перемоги 7">
                         </div>
                     </div>
-                    <div class="col-md-3 address-top-offset">
-                        <label class="radio-inline">
-                          <input type="radio" name="addressRadios" id="address1" value="city"> місто
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="addressRadios" id="address2" value="village"> село
-                        </label>
+                    <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+                            <label class="radio-inline">
+                              <input type="radio" name="addressRadios" id="address1" value="city"> місто
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="addressRadios" id="address2" value="village"> село
+                            </label>
+                        </div>                        
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label class="control-label">Спадковість: </label>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label">Спадковість: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="heredityRadios" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="heredityRadios" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Паління: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="smokyRadios" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="smokyRadios" value="0"> ні
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Професійна діяльність: </label>
+                        <div>
+                            <label class="radio-inline">
+                              <input type="radio" name="wokrRadios" value="1"> розумова
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="wokrRadios" value="2"> фізична
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="wokrRadios" value="3"> не працює
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="wokrRadios" value="4"> токсичні впливи
+                            </label>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label">Астма: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoRadios1" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoRadios1" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label left-offset">сезонна: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoSeasonRadios1" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoSeasonRadios1" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-offset-6">
+                            <label class="control-label left-offset">цілорічна: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoYearRadios1" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoYearRadios1" value="0"> ні
+                            </label>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label">Риніт: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoRadios2" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoRadios2" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label left-offset">сезонна: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoSeasonRadios2" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoSeasonRadios2" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-offset-6">
+                            <label class="control-label left-offset">цілорічна: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoYearRadios2" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoYearRadios2" value="0"> ні
+                            </label>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label">Кон'юнктивіт: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoRadios3" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoRadios3" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label left-offset">сезонна: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoSeasonRadios3"value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoSeasonRadios3" value="0"> ні
+                            </label>
+                        </div>
+                        <div class="col-md-offset-6">
+                            <label class="control-label left-offset">цілорічна: </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoYearRadios3" value="1"> так
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="alergoYearRadios3" value="0"> ні
+                            </label>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Алергодерматит: </label>
                         <label class="radio-inline">
-                          <input type="radio" name="heredityRadios" value="1"> так
+                          <input type="radio" name="alergoRadios4" value="1"> так
                         </label>
                         <label class="radio-inline">
-                          <input type="radio" name="heredityRadios" value="0"> ні
+                          <input type="radio" name="alergoRadios4" value="0"> ні
+                        </label>
+                    </div>   
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Екзема: </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios5" value="1"> так
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios5" value="0"> ні
+                        </label>
+                    </div>    
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Кропивянка: </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios6" value="1"> так
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios6" value="0"> ні
+                        </label>
+                    </div>     
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Оральний алергічний синдром: </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios7" value="1"> так
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios7" value="0"> ні
+                        </label>
+                    </div>      
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Гастроінтестинальний алергічний синдрон: </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios8" value="1"> так
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios8" value="0"> ні
+                        </label>
+                    </div>      
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Ангіоневротичний набряк: </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios9" value="1"> так
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios9" value="0"> ні
+                        </label>
+                    </div>        
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Анафілактичний шок: </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios10" value="1"> так
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="alergoRadios10" value="0"> ні
                         </label>
                     </div>
-                    <div class="col-md-6">
-                        <label class="control-label">Паління: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="smokyRadios" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="smokyRadios" value="0"> ні
-                        </label>
+                    <div class="form-group">
+                        <label class="col-md-9 control-label">Результати обстеження: </label>
+                        <label for="results" class="col-md-3 control-label results-label">ДОДАТИ</label>
+                        <input type="file" name="results" id="results" value="sad">
+                    </div>                               
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="hospital" class="col-md-3 control-label">Діагностичний заклад: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="hospital" placeholder="Назва закладу">
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label for="surnameDoctor" class="col-md-3 control-label">П.І.Б. лікаря: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="surnameDoctor" placeholder="Іванов І.І.">
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label for="phoneDoctor" class="col-md-3 control-label">Телефон лікаря: </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="phoneDoctor" placeholder="067-123-45-67">
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label for="emailDoctor" class="col-md-3 control-label">E-mail лікаря: </label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" id="emailDoctor" placeholder="test@fxmed.com">
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label for="dateExamination" class="col-md-3 control-label">Дата огляду: </label>
+                        <div class="col-md-9">
+                            <input type="date" class="form-control" id="dateExamination" placeholder="01.01.2019">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" name="" value="Зареєструвати клієнта" class="btn btn-default addClient">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Професійна діяльність: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="wokrRadios" value="1"> розумова
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="wokrRadios" value="2"> фізична
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="wokrRadios" value="3"> не працює
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="wokrRadios" value="4"> токсичні впливи
-                    </label>
-                </div> 
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label class="control-label">Астма: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoRadios1" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoRadios1" value="0"> ні
-                        </label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label left-offset">сезонна: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoSeasonRadios1" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoSeasonRadios1" value="0"> ні
-                        </label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label left-offset">цілорічна: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoYearRadios1" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoYearRadios1" value="0"> ні
-                        </label>
-                    </div>
-                </div> 
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label class="control-label">Риніт: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoRadios2" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoRadios2" value="0"> ні
-                        </label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label left-offset">сезонна: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoSeasonRadios2" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoSeasonRadios2" value="0"> ні
-                        </label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label left-offset">цілорічна: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoYearRadios2" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoYearRadios2" value="0"> ні
-                        </label>
-                    </div>
-                </div> 
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <label class="control-label">Кон'юнктивіт: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoRadios3" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoRadios3" value="0"> ні
-                        </label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label left-offset">сезонна: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoSeasonRadios3"value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoSeasonRadios3" value="0"> ні
-                        </label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label left-offset">цілорічна: </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoYearRadios3" value="1"> так
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" name="alergoYearRadios3" value="0"> ні
-                        </label>
-                    </div>
-                </div>  
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Алергодерматит: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios4" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios4" value="0"> ні
-                    </label>
-                </div>   
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Екзема: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios5" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios5" value="0"> ні
-                    </label>
-                </div>    
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Кропивянка: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios6" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios6" value="0"> ні
-                    </label>
-                </div>     
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Оральний алергічний синдром: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios7" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios7" value="0"> ні
-                    </label>
-                </div>      
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Гастроінтестинальний алергічний синдрон: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios8" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios8" value="0"> ні
-                    </label>
-                </div>      
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Ангіоневротичний набряк: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios9" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios9" value="0"> ні
-                    </label>
-                </div>        
-                <div class="form-group">
-                    <label class="col-md-10 control-label">Анафілактичний шок: </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios10" value="1"> так
-                    </label>
-                    <label class="radio-inline">
-                      <input type="radio" name="alergoRadios10" value="0"> ні
-                    </label>
-                </div>                               
             </div>
         </form>
     </main>

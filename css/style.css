@@ -1,14 +1,19 @@
+body {
+    color: #000;
+    background-color: #eecf535e;
+}
+
 .form-wrap {
     margin: 0 auto;
-    width: 40%;
 }
 
 .row {
 	margin: 0px;
+	padding: 20px;
 }
 
 .form-group {
-	margin-bottom: 8px;
+    width: 100%;
 }
 
 .form-group .col-md-4,  
@@ -46,4 +51,18 @@
 
 .address-top-offset {
 	padding-top: 10px;
+}
+
+#results {
+	visibility: hidden;
+}
+
+.form-group .results-label {
+	border: 1px solid;
+	padding: 5px;
+	text-align: center;
+}
+
+.addClent {
+	width: 100%;
 }
