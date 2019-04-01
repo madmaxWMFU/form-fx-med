@@ -1,9 +1,8 @@
 $(document).on("click", ".addClient", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
-	// setElem();
 	$.ajax({
-	    url: "pages/setData.php", 
+	    url: "setData.php", 
 	    dataType: 'json',
 	    cache: false,
 	    contentType: false,
@@ -28,7 +27,7 @@ function getData() {
 		"email": $("#email").val(),
 		"phone": $("#phone").val(),
 		"address": $("#address").val(),
-		"addressType": $("[name='addressRadios']:checked").val(),
+		"region": $("#region").val(),
 		"heredity": $("[name='heredityRadios']:checked").val(),
 		"smoky": $("[name='smokyRadios']:checked").val(),
 		"work": $("[name='wokrRadios']:checked").val(),
@@ -60,8 +59,6 @@ function getData() {
 	for ( var key in userInfo ) {
     	formData.append(key, userInfo[key]);
 	}
-	// formData.append("userInfo", userInfo);
-
 	return formData;
 }
 
@@ -80,3 +77,5 @@ function setElem() {
 		$(this).val("1992-05-19");
 	})
 }
+
+$(document).on("click", ".singOut")

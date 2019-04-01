@@ -3,6 +3,28 @@ body {
     background-color: #eecf535e;
 }
 
+.header {
+	background-color: #fff;
+}
+
+nav>ul {
+	text-align: right;
+	padding: 10px 20px;
+}
+
+nav>ul>li {
+	height: 20px;
+	display: inline;
+	padding: 10px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+nav>ul>li>a {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	font-size: 14px;  
+}
 .form-wrap {
     margin: 0 auto;
 }
@@ -12,10 +34,24 @@ body {
 	padding: 20px;
 }
 
-.form-group {
-    width: 100%;
+.col-md-4 {
+	border-radius: 5px;
+	border: 1px solid;
+	padding: 20px;
+	margin-top: 10px;
+	margin-left: 10px;
+	position: relative;
+	width: 32%;
 }
 
+.col-md-4 .form-group {
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 6px;
+}
+.col-md-4:last-child() .form-group {
+    border-bottom: solid;
+   }
 .form-group .col-md-4,  
 .form-group .col-md-6,  
 .form-group .col-md-7,
@@ -29,6 +65,11 @@ body {
 	cursor: pointer;
 }
 
+.form-group .text-align {
+	padding-top: 0px;
+	line-height: 16px;
+}
+
 .form-group .radio-inline {
 	padding-top: 0px;
 }
@@ -37,20 +78,12 @@ body {
     padding-left: 24px;
 }
 
-.date-birth-left-offset {
-	padding-left: 25px;
-} 
-
-.gender-offset {
-    padding: 6px 0 0 0;
-} 
-
-.address-left-offset {
-    padding-left: 20px;
+.radio-inline + .radio-inline {
+	margin-left: 6px; 
 }
 
-.address-top-offset {
-	padding-top: 10px;
+.left-radio {
+    margin-left: 11px;
 }
 
 #results {
@@ -63,6 +96,16 @@ body {
 	text-align: center;
 }
 
-.addClent {
+.addClient {
 	width: 100%;
+	height: 45px;
+	margin-bottom: 0px; 
+}
+
+.caption-wrap {
+	position: absolute;
+	top : -11px;
+	left: 13px;
+	font-weight: bold;
+	background-color: #f8edbf;
 }
