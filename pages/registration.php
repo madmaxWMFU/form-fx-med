@@ -29,10 +29,9 @@
 
 		$loginUser = $_POST['login'];
 		$passUser = md5($_POST['pass']);
-		$query = "SELECT type_user FROM auth_user WHERE login_user = '".$loginUser."' and pass_user = '".$passUser."'";
-		$result = $mysqli->query($query);
-		$row = $result->fetch_assoc();
-		echo json_encode(array("user" => $loginUser, "type" => $row['type_user']));
+		$typeUser = $_POST['type'];
+		$query = "INSERT INTO auth_user (login_user, pass_user, type_user) VALUES ('".$loginUser."', '".$passUser."', ".$typeUser.")";
+		$mysqli->query($query);
 		$mysqli->close();	
 	}
 

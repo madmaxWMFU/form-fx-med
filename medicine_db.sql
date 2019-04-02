@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 01 2019 г., 15:57
+-- Время создания: Апр 02 2019 г., 16:18
 -- Версия сервера: 10.1.36-MariaDB
 -- Версия PHP: 5.6.38
 
@@ -41,7 +41,8 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id_user`, `login_user`, `pass_user`, `type_user`, `note_user`) VALUES
-(1, 'admin', '4b4b7c0ef4442be9e7969bc3313c47a9', 0, '');
+(1, 'admin', '4b4b7c0ef4442be9e7969bc3313c47a9', 0, ''),
+(2, 'madmax', '50572dec71b7242224b7db488768e6f5', 10, '');
 
 -- --------------------------------------------------------
 
@@ -444,7 +445,7 @@ ALTER TABLE `user_results`
 -- AUTO_INCREMENT для таблицы `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `user_info`

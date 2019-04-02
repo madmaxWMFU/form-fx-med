@@ -25,8 +25,6 @@ function saveUserConf(arr) {
 }
 
 function checkUser(arr) {
-	console.log(arr);
-	console.log(arr.hasOwnProperty("error"));
 	arr.hasOwnProperty("error") ? error() : saveUserConf(arr);
 }
 

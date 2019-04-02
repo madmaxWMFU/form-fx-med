@@ -29,10 +29,14 @@
 
 		$loginUser = $_POST['login'];
 		$passUser = md5($_POST['pass']);
-		$query = "SELECT type_user FROM auth_user WHERE login_user = '".$loginUser."' and pass_user = '".$passUser."'";
+		$query = "SELECT * FROM auth_user WHERE login_user = '".$loginUser."'";
 		$result = $mysqli->query($query);
 		$row = $result->fetch_assoc();
-		echo json_encode(array("user" => $loginUser, "type" => $row['type_user']));
+		if($row['pass_user'] == $passUser){
+			echo json_encode(array("user" => $row['login_user'], "type" => $row['type_user']));
+		} else {
+			printError("not correct login or password");
+		}
 		$mysqli->close();	
 	}
 

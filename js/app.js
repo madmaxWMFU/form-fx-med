@@ -1,3 +1,4 @@
+init();
 $(document).on("click", ".addClient", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
@@ -11,6 +12,7 @@ $(document).on("click", ".addClient", function(e) {
 	    type: 'POST', 
       	success: function(msg) {
       		console.log(msg);
+      		//clean all item
       	} 		
 	})
 })
@@ -62,20 +64,20 @@ function getData() {
 	return formData;
 }
 
+$(document).on("load", function() {
+	var obj = JSON.parse(window.sessionStorage.getItem('auth'));
+	if(obj['type'] != 0) {
+		$(".regist").css("display", "none");
+	}
+})
 
-function setElem() {
-	$("[type='radio']").each(function(){
-		$(this).prop("checked", true );
-	})
-	$("[type='text']").each(function(){
-		$(this).val("adsfdas");
-	})
-	$("[type='email']").each(function(){
-		$(this).val("adsfdas");
-	})
-	$("[type='date']").each(function(){
-		$(this).val("1992-05-19");
-	})
+$(document).on("click", ".singOut", function(){
+	window.sessionStorage.removeItem('auth');
+	window.open('../index.html', "_self");
+})
+
+function init() {
+	if(!window.sessionStorage.getItem('auth'))
+		window.open('../index.html', "_self");
 }
 
-$(document).on("click", ".singOut")
