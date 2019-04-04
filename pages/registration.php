@@ -21,7 +21,7 @@
 	}
 	
 	function registUser() {
-		$mysqli = new mysqli("localhost", "root", "", "medicine_db");
+		$mysqli = new mysqli("db", "root", "test", "medicine_db");
 		if ($mysqli->connect_errno) {
 		    printError("Соединение не удалось: ".$mysqli->connect_error);
 		    exit();
@@ -31,6 +31,7 @@
 		$passUser = md5($_POST['pass']);
 		$typeUser = $_POST['type'];
 		$query = "INSERT INTO auth_user (login_user, pass_user, type_user) VALUES ('".$loginUser."', '".$passUser."', ".$typeUser.")";
+		echo $query;
 		$mysqli->query($query);
 		$mysqli->close();	
 	}

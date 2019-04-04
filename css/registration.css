@@ -51,6 +51,10 @@ label {
   transition: ease .6s;
 }
 
+#region {
+  margin: 10px;
+}
+
 .input:focus + .line-box .line {
   width: 100%;
 }

@@ -6,7 +6,7 @@ $(document).on("click", ".createUser", function(e) {
 	    data: getData(), 
 	    type: 'POST', 
       	success: function(msg) {
-			window.open('main.html',"_self");
+			// window.open('main.html',"_self");
       	} 		
 	})
 })
