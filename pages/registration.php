@@ -1,4 +1,5 @@
 <?php
+	header('Content-Type: text/html; charset=UTF-8');
 	function init() {
 		if(checkData()){
 			registUser();
@@ -21,7 +22,7 @@
 	}
 	
 	function registUser() {
-		$mysqli = new mysqli("db", "root", "test", "medicine_db");
+		$mysqli = new mysqli("localhost", "root", "", "medicine_db");
 		if ($mysqli->connect_errno) {
 		    printError("Соединение не удалось: ".$mysqli->connect_error);
 		    exit();
