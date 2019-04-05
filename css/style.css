@@ -119,3 +119,8 @@ nav>ul>li>a {
 	font-weight: bold;
 	background-color: #f8edbf;
 }
+
+.mainData> table {
+	background-color: #fff;
+	width: 70%;
+}
