@@ -1,10 +1,6 @@
 <?php
 	header('Content-Type: text/html; charset=UTF-8');
-	$mysqli = new mysqli("localhost", "root", "", "medicine_db");
-	if ($mysqli->connect_errno) {
-	    printError("Соединение не удалось: ".$mysqli->connect_error);
-	    exit();
-	}
+	require_once __DIR__.'/conn.php';
 
 	switch ($_POST['msg']) {
 		case 'getUserResult':
@@ -392,6 +388,8 @@
 		case 'getUsers':
 			$query = "SELECT id_user, surname_user, name_user, last_name_user, dateExamination FROM user_info WHERE region = 1";
 			break;
+		case 'searchAlergoUser':
+			$query = "SELECT r.id_user, i.surname_user FROM user_results r LEFT JOIN user_info i ON i.id_user = r.id_user WHERE (r.alergo58 > 0.1 or r.alergo66 > 0.1)";
 		default:
 			# code...
 			break;

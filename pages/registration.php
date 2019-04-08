@@ -1,5 +1,7 @@
 <?php
 	header('Content-Type: text/html; charset=UTF-8');
+	require_once __DIR__.'/conn.php';
+
 	function init() {
 		if(checkData()){
 			registUser();
@@ -22,12 +24,6 @@
 	}
 	
 	function registUser() {
-		$mysqli = new mysqli("localhost", "root", "", "medicine_db");
-		if ($mysqli->connect_errno) {
-		    printError("Соединение не удалось: ".$mysqli->connect_error);
-		    exit();
-		}
-
 		$loginUser = $_POST['login'];
 		$passUser = md5($_POST['pass']);
 		$typeUser = $_POST['type'];

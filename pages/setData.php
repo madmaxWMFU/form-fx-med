@@ -3,6 +3,7 @@
 	ini_set('error_reporting', E_ALL);
 	ini_set('display_errors', true);
 	require_once __DIR__.'/src/SimpleXLSX.php';
+	require_once __DIR__.'/conn.php';
 
 	function init() {
 		if(checkData()){
@@ -27,12 +28,6 @@
 	}
 	
 	function setDataUser() {
-		$mysqli = new mysqli("localhost", "root", "", "medicine_db");
-		if ($mysqli->connect_errno) {
-		    printError("Соединение не удалось: ".$mysqli->connect_error);
-		    exit();
-		}	
-
 		$arrUser = $_POST;
 		$userInformation = "INSERT INTO user_info (surname_user, name_user, last_name_user, date_birthday, gender, email, phone, address, region, heredity, smoky, work, alergo1, alergoSeason1, alergoYear1, alergo2, alergoSeason2, alergoYear2, alergo3, alergoSeason3, alergoYear3, alergo4, alergo5, alergo6, alergo7, alergo8, alergo9, alergo10, hospital, surnameDoctor, phoneDoctor, emailDoctor, dateExamination, checkItem) VALUES ('".$arrUser['surname']."', '".$arrUser['name']."', '".$arrUser['lastName']."', '".$arrUser['dateBirthday']."', '".$arrUser['gender']."', '".$arrUser['email']."', '".$arrUser['phone']."', '".$arrUser['address']."', '".$arrUser['region']."', ".$arrUser['heredity'].", ".$arrUser['smoky'].", ".$arrUser['work'].", ".$arrUser['alergo1'].", ".$arrUser['alergoSeason1'].", ".$arrUser['alergoYear1'].", ".$arrUser['alergo2'].", ".$arrUser['alergoSeason2'].", ".$arrUser['alergoYear2'].", ".$arrUser['alergo3'].", ".$arrUser['alergoSeason3'].", ".$arrUser['alergoYear3'].", ".$arrUser['alergo4'].", ".$arrUser['alergo5'].", ".$arrUser['alergo6'].", ".$arrUser['alergo7'].", ".$arrUser['alergo8'].", ".$arrUser['alergo9'].", ".$arrUser['alergo10'].", '".$arrUser['hospital']."', '".$arrUser['surnameDoctor']."', '".$arrUser['phoneDoctor']."', '".$arrUser['emailDoctor']."', '".$arrUser['dateExamination']."', '".$arrUser['checkItem']."')"; 	
 		echo $userInformation;	
