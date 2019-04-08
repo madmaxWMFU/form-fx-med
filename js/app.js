@@ -1,4 +1,3 @@
-init();
 $(document).on("click", ".addClient", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
@@ -81,55 +80,79 @@ function init() {
 		window.open('../index.html', "_self");
 }
 
-function createTable(data) {
+function createTable(data, heads, code) {
 	var table = document.createElement("table");
 	table.classList.add("table");
 	table.classList.add("table-striped");
 	table.classList.add("table-bordered");
 	table.classList.add("table-responsive");
+	table.classList.add("table-hover");
 	var thead = document.createElement('thead');
+	thead.classList.add("text-center");
 	var tbody = document.createElement('tbody');
 	var theadTr = document.createElement('tr');
-	var theadTd1 = document.createElement('td');
-	var theadTd2 = document.createElement('td');
-	var theadTd3 = document.createElement('td');
-	theadTd1.innerText = "Позначення";
-	theadTd2.innerText = "Алерген";
-	theadTd3.innerText = "kUA/L";
-	theadTr.appendChild(theadTd1);
-	theadTr.appendChild(theadTd2);
-	theadTr.appendChild(theadTd3);
+	for(var j=0; j<heads.length; j++) {
+		var theadTd = document.createElement('td');
+		theadTd.appendChild(document.createTextNode(heads[j]));
+		theadTr.appendChild(theadTd);
+	}
 	thead.appendChild(theadTr);
 	table.appendChild(thead);
-	for(var i=0; i<data.length; i++) {
-		for(item in data[i]) {
-			tbodyTr = document.createElement('tr');
-			tbodyTd = document.createElement('td');
-			tbodyTd.innerText = item;
-			tbodyTr.appendChild(tbodyTd);
-			tbodyTd.colSpan = 3;
-			tbody.appendChild(tbodyTr);
-			for(value in data[i][item]) {
+	if(code) {
+		for(var i=0; i<data.length; i++) {
+			for(item in data[i]) {
 				tbodyTr = document.createElement('tr');
 				tbodyTd = document.createElement('td');
-				tbodyTd.innerText = value;
-				tbodyTd.colSpan = 3;
+				tbodyTd.innerText = item;
 				tbodyTr.appendChild(tbodyTd);
+				tbodyTd.colSpan = 3;
 				tbody.appendChild(tbodyTr);
-				for(var val in data[i][item][value]) {
+				for(value in data[i][item]) {
 					tbodyTr = document.createElement('tr');
-					tbodyTd1 = document.createElement('td');
-					tbodyTd2 = document.createElement('td');
-					tbodyTd3 = document.createElement('td');
-					tbodyTd1.innerText = val;
-					tbodyTd2.innerText = data[i][item][value][val][1];
-					tbodyTd3.innerText = data[i][item][value][val][0];
-					tbodyTr.appendChild(tbodyTd1);
-					tbodyTr.appendChild(tbodyTd2);
-					tbodyTr.appendChild(tbodyTd3);
+					tbodyTd = document.createElement('td');
+					tbodyTd.innerText = value;
+					tbodyTd.colSpan = 3;
+					tbodyTr.appendChild(tbodyTd);
 					tbody.appendChild(tbodyTr);
-				}				
+					for(var val in data[i][item][value]) {
+						tbodyTr = document.createElement('tr');
+						tbodyTd1 = document.createElement('td');
+						tbodyTd2 = document.createElement('td');
+						tbodyTd3 = document.createElement('td');
+						tbodyTd1.innerText = val;
+						tbodyTd2.innerText = data[i][item][value][val][1];
+						tbodyTd3.innerText = data[i][item][value][val][0];
+						tbodyTr.appendChild(tbodyTd1);
+						tbodyTr.appendChild(tbodyTd2);
+						tbodyTr.appendChild(tbodyTd3);
+						tbody.appendChild(tbodyTr);
+					}				
+				}
 			}
+		}
+	} else {
+		for(var i=0; i<data.length; i++) {
+			tbodyTr = document.createElement('tr');
+			tbodyTr.setAttribute('data-id', data[i]['id']);
+			tbodyTd1 = document.createElement('td');
+			tbodyTd2 = document.createElement('td');
+			tbodyTd3 = document.createElement('td');
+			tbodyTd4 = document.createElement('td');
+			tbodyTd5 = document.createElement('td');
+			tbodyTd6 = document.createElement('td');
+			tbodyTd1.innerText = data[i]['client'];
+			tbodyTd2.innerText = data[i]['email'];
+			tbodyTd3.innerText = data[i]['phoneClient'];
+			tbodyTd4.innerText = data[i]['date'];
+			tbodyTd5.innerText = data[i]['doctor'];
+			tbodyTd6.innerText = data[i]['phoneDoctor'];
+			tbodyTr.appendChild(tbodyTd1);
+			tbodyTr.appendChild(tbodyTd2);
+			tbodyTr.appendChild(tbodyTd3);
+			tbodyTr.appendChild(tbodyTd4);
+			tbodyTr.appendChild(tbodyTd5);
+			tbodyTr.appendChild(tbodyTd6);
+			tbody.appendChild(tbodyTr);			
 		}
 	}
 	table.appendChild(tbody);
@@ -155,6 +178,14 @@ function num2str(n, text_forms) {
     return text_forms[2];
 }
 
+function getInputData() {
+	var arrInput = [];
+	$("[name='alergo']:checked").each(function() {
+		arrInput.push($(this).val());
+	})
+	return arrInput;
+}
+
 $(document).on("click", ".finder", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
@@ -164,7 +195,6 @@ $(document).on("click", ".finder", function(e) {
 	    data: {"msg": "getUserResult", "type": user['type']}, 
 	    type: 'POST', 
       	success: function(arr) {
-      		console.log(JSON.parse(arr));
       		$(".mainData").html(createTable(JSON.parse(arr)));
       	} 		
 	})
@@ -172,8 +202,39 @@ $(document).on("click", ".finder", function(e) {
 
 $(document).on("change", "[name='alergo']", function() {
 	var countAlegro = $("[name='alergo']:checked").length;
-	console.log(countAlegro);
-	$(".findAlegro").val("Пошук по "+num2str(countAlegro, ['алергенту', 'алергента', 'алергентів']));
+	if(countAlegro != 0){
+		$(".find-alergo-button").val("Пошук по: "+countAlegro+" "+num2str(countAlegro, ['алергенту', 'алергентах', 'алергентів']));
+	} else {
+		$(".find-alergo-button").val("Пошук");
+	}
+})
+
+$(document).on("click", ".find-alergo-button", function(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	var user = JSON.stringify(window.sessionStorage.getItem('auth'));
+	$.ajax({
+	    url: "getData.php", 
+	    dataType: "json",
+	    data: {"msg": "searchAlergoUser", "data": getInputData, "region": $(".region").val()}, 
+	    type: 'POST', 
+      	success: function(arr) {
+      		$(".mainData").html(createTable(arr, ["П.І.Б. клієнта", "E-mail", "Телефон клієнта", "Дата тестування", "П.І.Б. лікаря", "Телефон лікаря"], false));
+      	} 		
+	})	
+})
+
+$(document).on("click", ".table", function(e) {
+	$.ajax({
+	    url: "getData.php", 
+	    dataType: "json",
+	    data: {"msg": "getUserResult", "id": $(e.target).parent().data("id")}, 
+	    type: 'POST', 
+      	success: function(arr) {
+      		$(document).find(".modal-body").html(createTable(arr, ["Позначення", "Алерген", "kUA/L"], true));
+      		$(document).find('.modal').modal('show');
+      	} 		
+	})
 })
 
 
@@ -185,7 +246,4 @@ $(document).on("change", "[name='alergo']", function() {
 
 
 
-
-
-
-
+init();

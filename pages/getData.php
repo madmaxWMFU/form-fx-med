@@ -1,11 +1,17 @@
 <?php
 	header('Content-Type: text/html; charset=UTF-8');
 	require_once __DIR__.'/conn.php';
+	// $mysqli = new mysqli("db", "root", "test", "medicine_db");
+	$mysqli = new mysqli("localhost", "root", "", "medicine_db");
+	if ($mysqli->connect_errno) {
+	    printError("Соединение не удалось: ".$mysqli->connect_error);
+	    exit();
+	}
 
 	switch ($_POST['msg']) {
 		case 'getUserResult':
 			// $query = "SELECT * FROM user_results WHERE id_user = ".$_POST['idUser'];
-			$query = "SELECT * FROM user_results WHERE id_results = 1";
+			$query = "SELECT * FROM user_results WHERE id_results = ".$_POST['id'];
 			$result = $mysqli->query($query);
 			$row = $result->fetch_assoc();
 			$mainArray = array();
@@ -389,7 +395,29 @@
 			$query = "SELECT id_user, surname_user, name_user, last_name_user, dateExamination FROM user_info WHERE region = 1";
 			break;
 		case 'searchAlergoUser':
-			$query = "SELECT r.id_user, i.surname_user FROM user_results r LEFT JOIN user_info i ON i.id_user = r.id_user WHERE (r.alergo58 > 0.1 or r.alergo66 > 0.1)";
+			$region = $_POST['region'];
+			$data = explode(",", $_POST['data']);
+			if($data) {
+				$str = " WHERE (";
+				for($i=0; $i<sizeof($data); $i++) {
+					if($i != sizeof($data)-1) {
+						$str .= $data[$i]." > 0.1 or ";
+					} else {
+						$str .= $data[$i]." > 0.1) ";
+					}					
+				}
+			} else {
+				$str = "";
+			}
+
+			$query = "SELECT r.id_user, i.surname_user, i.name_user, i.last_name_user, i.email, i.phone, i.surnameDoctor, i.phoneDoctor, i.dateExamination FROM user_results r LEFT JOIN user_info i ON i.id_user = r.id_user".$str;
+			$result = $mysqli->query($query);
+			$row = $result->fetch_assoc();
+			$mainArray = array();
+			do{
+				array_push($mainArray, array("id" => $row['id_user'], "client" => $row['surname_user']." ".$row['name_user']." ".$row['last_name_user'], "email" => $row['email'], "phoneClient" => $row['phone'], "doctor" => $row['surnameDoctor'], "phoneDoctor" => $row['phoneDoctor'], "date" => $row['dateExamination']));
+			}while($row = $result->fetch_assoc());
+			echo json_encode($mainArray);
 		default:
 			# code...
 			break;

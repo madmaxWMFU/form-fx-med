@@ -57,16 +57,23 @@ nav>ul>li>a {
 .col-md-4 .form-group {
     width: 100%;
     margin: 0px;
-    margin-bottom: 6px;
+    margin-bottom: 10px 0;
 }
+
 .col-md-4:last-child() .form-group {
     border-bottom: solid;
-   }
+}
+
+hr {
+	border-color: #a9a9a9;
+	margin: 10px 0;
+}
+
 .form-group .col-md-4,  
 .form-group .col-md-6,  
 .form-group .col-md-7,
 .form-group .col-md-9 {
-	padding-left: 0px;
+	padding: 0px;
 }
 
 .form-group .control-label {
@@ -90,6 +97,10 @@ nav>ul>li>a {
 
 .radio-inline + .radio-inline {
 	margin-left: 6px; 
+}
+
+.type-proffesion> .radio-inline + .radio-inline {
+	margin-left: 0px;
 }
 
 .left-radio {
@@ -122,5 +133,29 @@ nav>ul>li>a {
 
 .mainData> table {
 	background-color: #fff;
-	width: 70%;
+	width: 100%;
+	cursor: pointer;
+}
+
+.region-wrap {
+	margin-bottom: 0px;
+}
+
+.find-alergo-wrap {
+	margin-top: 6px;
+}
+
+.find-alergo-button {
+	width: 100%;
+}
+
+#find .col-md-3 {
+	border-radius: 5px;
+	border: 1px solid;
+	padding: 20px;
+	position: relative;
+}
+
+#accordion, .find-alergo-wrap {
+	margin-bottom: 0px;
 }

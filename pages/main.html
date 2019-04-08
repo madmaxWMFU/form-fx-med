@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../img/icon.png">
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="../js/app.js"></script>  
 </head>
 
@@ -25,15 +26,15 @@
     <main>
         <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs"> 
             <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
-                <li class="active">
+                <li class="">
                     <a href="#insert" data-toggle="tab">Додати паціента</a>
                 </li>
-                <li class="finder">
+                <li class="finder active">
                     <a href="#find" data-toggle="tab">Пошук паціента</a>
                 </li> 
             </ul>
             <div class="tab-content"> 
-                <div class="tab-pane fade in active" id="insert"> 
+                <div class="tab-pane fade " id="insert"> 
                     <form class="form-horizontal form-wrap">
                         <div class="row">
                             <div class="col-md-4">
@@ -186,7 +187,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Професійна діяльність: </label>
-                                        <div>
+                                        <div class="type-proffesion">
                                             <label class="radio-inline">
                                                 <input type="radio" name="wokrRadios" value="1"> розумова
                                             </label>
@@ -357,7 +358,7 @@
                                         <input type="file" name="results" id="results">
                                     </div> 
                                     <div class="form-group">
-                                        <input type="button" value="Зареєструвати пацієнта" class="btn btn-default addClient">
+                                        <input type="button" value="Зареєструвати пацієнта" class="btn btn-info addClient">
                                     </div>
                                     <span class="caption-wrap">Симптоми пацієнта</span>                              
                                 </div>                        
@@ -365,9 +366,40 @@
                         </div>
                     </form>
                 </div> 
-                <div class="tab-pane fade" id="find"> 
+                <div class="tab-pane fade in active" id="find"> 
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-3">
+                            <div class="form-group region-wrap">
+                                <select class="form-control region">
+                                    <option value="0">Виберіть область</option>
+                                    <option value="1">АР Крим</option>
+                                    <option value="2">Вінницька область</option>
+                                    <option value="3">Волинська область</option>
+                                    <option value="4">Дніпропетровська область</option>
+                                    <option value="5">Донецька область</option>
+                                    <option value="6">Житомирська область</option>
+                                    <option value="7">Закарпатська область</option>
+                                    <option value="8">Запорізька область</option>
+                                    <option value="9">Івано-Франківська область</option>
+                                    <option value="10">Київська область</option>
+                                    <option value="11">Кіровоградська область</option>
+                                    <option value="12">Луганська область</option>
+                                    <option value="13">Львівська область</option>
+                                    <option value="14">Миколаївська область</option>
+                                    <option value="15">Одеська область</option>
+                                    <option value="16">Полтавська область</option>
+                                    <option value="17">Рівненська область</option>
+                                    <option value="18">Сумська область</option>
+                                    <option value="19">Тернопільська область</option>
+                                    <option value="20">Харківська область</option>
+                                    <option value="21">Херсонська область</option>
+                                    <option value="22">Хмельницька область</option>
+                                    <option value="23">Черкаська область</option>
+                                    <option value="24">Чернівецька область  </option>
+                                    <option value="25">Чернігівська область</option>
+                                </select>
+                            </div> 
+                            <hr>                           
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="heading1">
@@ -429,7 +461,7 @@
                                         </h4>
                                     </div>
                                     <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
-                                        <div class="panel-body">
+                                        <div class="panel-body"> 
                                             <div class="checkbox">
                                                 <label><input type="checkbox" name="alergo" value="alergo1">Акація (Aca m)</label>
                                             </div>
@@ -1495,19 +1527,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="button" value="Пошук" class="btn btn-default findAlergo">                   
+                                <div class="form-group find-alergo-wrap">
+                                    <input type="button" value="Пошук" class="btn btn-info find-alergo-button">                   
                                 </div>
-                            </div>                            
+                            </div>    
+                            <span class="caption-wrap">Пошукові дінні: </span>                        
                         </div>
-                        <div class="col-md-7 mainData">
+                        <div class="col-md-9 mainData">
                             
                         </div>
                     </div>
                 </div> 
             </div>            
-        </div>        
+        </div> 
+        <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Лабораторний звіт клієнта</h4>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>         
     </main>
-    <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

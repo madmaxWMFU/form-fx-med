@@ -4,6 +4,13 @@
 	ini_set('display_errors', true);
 	require_once __DIR__.'/src/SimpleXLSX.php';
 	require_once __DIR__.'/conn.php';
+	
+	// $mysqli = new mysqli("db", "root", "test", "medicine_db");
+	$mysqli = new mysqli("localhost", "root", "", "medicine_db");
+	if ($mysqli->connect_errno) {
+	    printError("Соединение не удалось: ".$mysqli->connect_error);
+	    exit();
+	}
 
 	function init() {
 		if(checkData()){
