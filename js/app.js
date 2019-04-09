@@ -1,19 +1,22 @@
 $(document).on("click", ".addClient", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
-	$.ajax({
-	    url: "setData.php", 
-	    dataType: 'json',
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    data: getData(), 
-	    type: 'POST', 
-      	success: function(msg) {
-      		console.log(msg);
-      		//clean all item     // !!!!!!!!!!!!!!!!!
-      	} 		
-	})
+	if(checkInputs()){
+		$.ajax({
+		    url: "setData.php", 
+		    dataType: 'json',
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    data: getData(), 
+		    type: 'POST', 
+	      	success: function(msg) {
+				clearInputs();
+	      	} 		
+		})
+	} else {
+		alert("Заповніть всі данні!");
+	}
 })
 
 function getData() {
@@ -92,7 +95,7 @@ function createTable(data, heads, code) {
 	var tbody = document.createElement('tbody');
 	var theadTr = document.createElement('tr');
 	for(var j=0; j<heads.length; j++) {
-		var theadTd = document.createElement('td');
+		var theadTd = document.createElement('th');
 		theadTd.appendChild(document.createTextNode(heads[j]));
 		theadTr.appendChild(theadTd);
 	}
@@ -186,20 +189,6 @@ function getInputData() {
 	return arrInput;
 }
 
-$(document).on("click", ".finder", function(e) {    // !!!!!!!!!!!!!!!!!   delete this function
-	e.stopPropagation();
-	e.preventDefault();
-	var user = JSON.stringify(window.sessionStorage.getItem('auth'));
-	$.ajax({
-	    url: "getData.php", 
-	    data: {"msg": "getUserResult", "type": user['type']}, 
-	    type: 'POST', 
-      	success: function(arr) {
-      		$(".mainData").html(createTable(JSON.parse(arr)));
-      	} 		
-	})
-})
-
 $(document).on("change", "[name='alergo']", function() {
 	var countAlegro = $("[name='alergo']:checked").length;
 	if(countAlegro != 0){
@@ -212,14 +201,20 @@ $(document).on("change", "[name='alergo']", function() {
 $(document).on("click", ".find-alergo-button", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
-	var user = JSON.stringify(window.sessionStorage.getItem('auth'));
+	var user = JSON.parse(window.sessionStorage.getItem('auth'));
 	$.ajax({
 	    url: "getData.php", 
 	    dataType: "json",
-	    data: {"msg": "searchAlergoUser", "data": getInputData, "region": $(".region").val()}, 
+	    data: {"msg": "searchAlergoUser", "data": getInputData, "region": user["type"]}, 
 	    type: 'POST', 
       	success: function(arr) {
-      		$(".mainData").html(createTable(arr, ["П.І.Б. клієнта", "E-mail", "Телефон клієнта", "Дата тестування", "П.І.Б. лікаря", "Телефон лікаря"], false));
+      		if(arr.length != 0) {
+      			$(".mainData").html(createTable(arr, ["П.І.Б. клієнта", "E-mail", "Телефон клієнта", "Дата тестування", "П.І.Б. лікаря", "Телефон лікаря"], false));
+      		} else {
+      			$(".mainData").html("<div class='no-data text-center'><p>Дані відсутні!</p></div>");
+      		}	
+      		$('.panel-collapse.in').collapse('hide');
+      		$('html, body').animate({ scrollTop: 0 }, 'fast');
       	} 		
 	})	
 })
@@ -237,16 +232,97 @@ $(document).on("click", ".table", function(e) {
 	})
 })
 
+function checkInputs() {
+	var state = true;
+	$(".findForm").find("input[type='text']").each(function() {
+		if($(this).val() == "")
+			state = false;
+	})
+	$(".findForm").find("input[type='email']").each(function() {
+		if($(this).val() == "")
+			state = false;
+	})	
+	$(".findForm").find("input[type='date']").each(function() {
+		if($(this).val() == "")
+			state = false;
+	})	
+	if($("[name='genderRadios']:checked").length <= 0) {
+		state = false;
+	}	
+	if($("[name='heredityRadios']:checked").length <= 0) {
+		state = false;
+	}	
+	if($("[name='smokyRadios']:checked").length <= 0) {
+		state = false;
+	}	
+	if($("[name='wokrRadios']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios1']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoSeasonRadios1']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoYearRadios1']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios2']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoSeasonRadios2']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoYearRadios2']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios3']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoSeasonRadios3']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoYearRadios3']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios4']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios5']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios6']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios7']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios8']:checked").length <= 0) {
+		state = false;
+	}
+	if($("[name='alergoRadios9']:checked").length <= 0) {
+		state = false;
+	}	
+	if($("[name='alergoRadios10']:checked").length <= 0) {
+		state = false;
+	}
+	if($(".findForm").find("select").val() == "") {
+		state = false;
+	}
+	if($("[type='file']").get(0).files.length == 0) {
+		state = false;
+	}
+	
+	return state;
+}
 
-
-// !!!!!!!!!!!!!!!!!    check to empty values
-// !!!!!!!!!!!!!!!!!    clear after send and view msg
-// !!!!!!!!!!!!!!!!!    add user root who can all doing and user who can all see but not create another users
-
-
-
-
-
-
+function clearInputs() {
+	$(".findForm").find("input[type='text']").val("");
+	$(".findForm").find("input[type='email']").val("");
+	$(".findForm").find("input[type='date']").val("");
+	$(".findForm").find("input[type='radio']").prop("checked", false);
+	$(".findForm").find("#region").prop("selectedIndex", 0);
+	$(".findForm").find("[type='file']").replaceWith($(".findForm").find("[type='file']").val('').clone(true));
+}
 
 init();

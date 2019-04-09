@@ -6,7 +6,9 @@ $(document).on("click", ".createUser", function(e) {
 	    data: getData(), 
 	    type: 'POST', 
       	success: function(msg) {
-			window.open('main.html',"_self");
+      		var str = JSON.parse(msg);
+      		$(".msg").html(str['msg']).parent().css("display", "block");
+      		setTimeout(window.open('main.html',"_self"), 10000);
       	} 		
 	})
 })
@@ -23,7 +25,6 @@ function init() {
 	if(window.sessionStorage.getItem('auth')) {
 		var obj = JSON.parse(window.sessionStorage.getItem('auth'));
 		if(obj['type'] != 0) {
-			// window.open('../index.html', "_self");
 			window.open('main.html', "_self");
 		} 
 	} else {

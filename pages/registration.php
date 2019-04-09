@@ -1,23 +1,13 @@
 <?php
 	header('Content-Type: text/html; charset=UTF-8');
+	require_once('./conn.php'); 
 
-	$mysqli = new mysqli("db", "root", "test", "medicine_db");
-	// $mysqli = new mysqli("localhost", "root", "", "medicine_db");
-	if ($mysqli->connect_errno) {
-	    printError("Соединение не удалось: ".$mysqli->connect_error);
-	    exit();
-	}
-	
 	function init() {
 		if(checkData()){
 			registUser();
 		} else {
 			printError('undefined');
 		}
-	}
-
-	function printError($errorMsg) {
-		echo json_encode(array("error" => $errorMsg));
 	}
 
 	function checkData() {
@@ -30,12 +20,15 @@
 	}
 	
 	function registUser() {
+		Global $mysqli;
 		$loginUser = $_POST['login'];
 		$passUser = md5($_POST['pass']);
 		$typeUser = $_POST['type'];
 		$query = "INSERT INTO auth_user (login_user, pass_user, type_user) VALUES ('".$loginUser."', '".$passUser."', ".$typeUser.")";
-		echo $query;
-		$mysqli->query($query);
+		if($mysqli->query($query)) {
+			echo json_encode(array("msg" => "Користувача створенно!"));
+		}
+		
 		$mysqli->close();	
 	}
 

@@ -9,6 +9,7 @@ form {
   text-align: center;
   -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
   box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  position: relative;
 }
 label {
   display: block;
@@ -67,7 +68,7 @@ label {
   top: -3em;
 }
 
-button {
+.connect, .createUser {
   display: inline-block;
   padding: 12px 24px;
   background: rgb(220,220,220);
@@ -80,7 +81,16 @@ button {
   transition: ease .3s;
 }
 
-button:hover {
+.connect:hover, .connect:focus,
+.createUser:hover, .createUser:focus {
+  background: #eecf535e;
+  color: #333;
+  outline: solid 1px #8BC34A;
+  border-radius: 3px;
+}
+
+.connect:hover,
+.createUser:hover {
   background: #eecf535e;
   color: #333;
 }
@@ -88,4 +98,14 @@ button:hover {
 .error {
   background: #f34141;
   width: 100%;
+}
+
+.info-msg {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  left: 0px;
+  font-size: 18px;
+  color: #8BC34A; 
+  display: none; 
 }

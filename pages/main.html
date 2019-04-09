@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,16 +25,16 @@
     <main>
         <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs"> 
             <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
-                <li class="">
+                <li class="active">
                     <a href="#insert" data-toggle="tab">Додати паціента</a>
                 </li>
-                <li class="finder active">
+                <li>
                     <a href="#find" data-toggle="tab">Пошук паціента</a>
                 </li> 
             </ul>
             <div class="tab-content"> 
-                <div class="tab-pane fade " id="insert"> 
-                    <form class="form-horizontal form-wrap">
+                <div class="tab-pane fade in active" id="insert"> 
+                    <form class="form-horizontal form-wrap findForm">
                         <div class="row">
                             <div class="col-md-4">
                                 <div>
@@ -51,6 +50,39 @@
                                             <input type="text" class="form-control" id="surnameDoctor" placeholder="Іванов І.І.">
                                         </div>
                                     </div>  
+                                    <div class="form-group">
+                                        <label for="region" class="col-md-3 control-label">Область: </label>
+                                        <div class="col-md-9">
+                                            <select id="region" class="form-control">
+                                                <option value="" class="checkOption">Виберіть область</option>
+                                                <option value="1">АР Крим</option>
+                                                <option value="2">Вінницька область</option>
+                                                <option value="3">Волинська область</option>
+                                                <option value="4">Дніпропетровська область</option>
+                                                <option value="5">Донецька область</option>
+                                                <option value="6">Житомирська область</option>
+                                                <option value="7">Закарпатська область</option>
+                                                <option value="8">Запорізька область</option>
+                                                <option value="9">Івано-Франківська область</option>
+                                                <option value="10">Київська область</option>
+                                                <option value="11">Кіровоградська область</option>
+                                                <option value="12">Луганська область</option>
+                                                <option value="13">Львівська область</option>
+                                                <option value="14">Миколаївська область</option>
+                                                <option value="15">Одеська область</option>
+                                                <option value="16">Полтавська область</option>
+                                                <option value="17">Рівненська область</option>
+                                                <option value="18">Сумська область</option>
+                                                <option value="19">Тернопільська область</option>
+                                                <option value="20">Харківська область</option>
+                                                <option value="21">Херсонська область</option>
+                                                <option value="22">Хмельницька область</option>
+                                                <option value="23">Черкаська область</option>
+                                                <option value="24">Чернівецька область  </option>
+                                                <option value="25">Чернігівська область</option>
+                                            </select>
+                                        </div>
+                                    </div>                                    
                                     <div class="form-group">
                                         <label for="phoneDoctor" class="col-md-3 control-label text-align">Телефон лікаря: </label>
                                         <div class="col-md-9">
@@ -119,39 +151,6 @@
                                         <label for="phone" class="col-md-3 control-label">Телефон: </label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" id="phone" placeholder="067-123-45-67">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region" class="col-md-3 control-label">Область: </label>
-                                        <div class="col-md-9">
-                                            <select id="region" class="form-control">
-                                                <option value="0">Виберіть область</option>
-                                                <option value="1">АР Крим</option>
-                                                <option value="2">Вінницька область</option>
-                                                <option value="3">Волинська область</option>
-                                                <option value="4">Дніпропетровська область</option>
-                                                <option value="5">Донецька область</option>
-                                                <option value="6">Житомирська область</option>
-                                                <option value="7">Закарпатська область</option>
-                                                <option value="8">Запорізька область</option>
-                                                <option value="9">Івано-Франківська область</option>
-                                                <option value="10">Київська область</option>
-                                                <option value="11">Кіровоградська область</option>
-                                                <option value="12">Луганська область</option>
-                                                <option value="13">Львівська область</option>
-                                                <option value="14">Миколаївська область</option>
-                                                <option value="15">Одеська область</option>
-                                                <option value="16">Полтавська область</option>
-                                                <option value="17">Рівненська область</option>
-                                                <option value="18">Сумська область</option>
-                                                <option value="19">Тернопільська область</option>
-                                                <option value="20">Харківська область</option>
-                                                <option value="21">Херсонська область</option>
-                                                <option value="22">Хмельницька область</option>
-                                                <option value="23">Черкаська область</option>
-                                                <option value="24">Чернівецька область  </option>
-                                                <option value="25">Чернігівська область</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -358,7 +357,7 @@
                                         <input type="file" name="results" id="results">
                                     </div> 
                                     <div class="form-group">
-                                        <input type="button" value="Зареєструвати пацієнта" class="btn btn-info addClient">
+                                        <input type="button" value="Зареєструвати пацієнта" class="btn btn-success addClient">
                                     </div>
                                     <span class="caption-wrap">Симптоми пацієнта</span>                              
                                 </div>                        
@@ -366,40 +365,9 @@
                         </div>
                     </form>
                 </div> 
-                <div class="tab-pane fade in active" id="find"> 
+                <div class="tab-pane fade" id="find"> 
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group region-wrap">
-                                <select class="form-control region">
-                                    <option value="0">Виберіть область</option>
-                                    <option value="1">АР Крим</option>
-                                    <option value="2">Вінницька область</option>
-                                    <option value="3">Волинська область</option>
-                                    <option value="4">Дніпропетровська область</option>
-                                    <option value="5">Донецька область</option>
-                                    <option value="6">Житомирська область</option>
-                                    <option value="7">Закарпатська область</option>
-                                    <option value="8">Запорізька область</option>
-                                    <option value="9">Івано-Франківська область</option>
-                                    <option value="10">Київська область</option>
-                                    <option value="11">Кіровоградська область</option>
-                                    <option value="12">Луганська область</option>
-                                    <option value="13">Львівська область</option>
-                                    <option value="14">Миколаївська область</option>
-                                    <option value="15">Одеська область</option>
-                                    <option value="16">Полтавська область</option>
-                                    <option value="17">Рівненська область</option>
-                                    <option value="18">Сумська область</option>
-                                    <option value="19">Тернопільська область</option>
-                                    <option value="20">Харківська область</option>
-                                    <option value="21">Херсонська область</option>
-                                    <option value="22">Хмельницька область</option>
-                                    <option value="23">Черкаська область</option>
-                                    <option value="24">Чернівецька область  </option>
-                                    <option value="25">Чернігівська область</option>
-                                </select>
-                            </div> 
-                            <hr>                           
+                        <div class="col-md-3">                   
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="heading1">
@@ -1528,14 +1496,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group find-alergo-wrap">
-                                    <input type="button" value="Пошук" class="btn btn-info find-alergo-button">                   
+                                    <input type="button" value="Пошук" class="btn btn-success find-alergo-button">                   
                                 </div>
                             </div>    
-                            <span class="caption-wrap">Пошукові данні: </span>                        
+                            <span class="caption-wrap">Пошукові дані: </span>                        
                         </div>
-                        <div class="col-md-9 mainData">
-                            
-                        </div>
+                        <div class="col-md-9 mainData"></div>
                     </div>
                 </div> 
             </div>            
