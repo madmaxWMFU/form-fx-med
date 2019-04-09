@@ -11,7 +11,7 @@ $(document).on("click", ".addClient", function(e) {
 	    type: 'POST', 
       	success: function(msg) {
       		console.log(msg);
-      		//clean all item
+      		//clean all item     // !!!!!!!!!!!!!!!!!
       	} 		
 	})
 })
@@ -186,7 +186,7 @@ function getInputData() {
 	return arrInput;
 }
 
-$(document).on("click", ".finder", function(e) {
+$(document).on("click", ".finder", function(e) {    // !!!!!!!!!!!!!!!!!   delete this function
 	e.stopPropagation();
 	e.preventDefault();
 	var user = JSON.stringify(window.sessionStorage.getItem('auth'));
@@ -239,6 +239,9 @@ $(document).on("click", ".table", function(e) {
 
 
 
+// !!!!!!!!!!!!!!!!!    check to empty values
+// !!!!!!!!!!!!!!!!!    clear after send and view msg
+// !!!!!!!!!!!!!!!!!    add user root who can all doing and user who can all see but not create another users
 
 
 
