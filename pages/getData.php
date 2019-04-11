@@ -427,6 +427,10 @@
 			} else {
 				printError($mysqli->error); 
 			}
+			break;
+		case "searchAlergo": 
+				$a = "SELECT date_birthday, if(((YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d'))) = 36, id_user, 'no') FROM user_info where age = 'no'";
+			break;
 	}
 
 	$mysqli->close();

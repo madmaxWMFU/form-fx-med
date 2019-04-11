@@ -1,3 +1,23 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.getElementsByTagName("INPUT");
+	var obj = JSON.parse(window.sessionStorage.getItem('auth'));
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                e.target.setCustomValidity("Заповніть поле або виберіть один із варіантів");
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+
+	if(obj['type'] != 0) {
+		$(".regist").css("display", "none");
+	}
+})
+
 $(document).on("click", ".addClient", function(e) {
 	e.stopPropagation();
 	e.preventDefault();
@@ -65,13 +85,6 @@ function getData() {
 	}
 	return formData;
 }
-
-$(document).on("load", function() {
-	var obj = JSON.parse(window.sessionStorage.getItem('auth'));
-	if(obj['type'] != 0) {
-		$(".regist").css("display", "none");
-	}
-})
 
 $(document).on("click", ".singOut", function(){
 	window.sessionStorage.removeItem('auth');
@@ -189,14 +202,35 @@ function getInputData() {
 	return arrInput;
 }
 
-$(document).on("change", "[name='alergo']", function() {
-	var countAlegro = $("[name='alergo']:checked").length;
-	if(countAlegro != 0){
-		$(".find-alergo-button").val("Пошук по: "+countAlegro+" "+num2str(countAlegro, ['алергенту', 'алергентах', 'алергентів']));
-	} else {
-		$(".find-alergo-button").val("Пошук");
-	}
-})
+// $(document).on("change", "[name='alergo']", function() {
+// 	var countAlegro = $("[name='alergo']:checked").length;
+// 	if(countAlegro != 0){
+// 		$(".find-alergo-button").val("Пошук по: "+countAlegro+" "+num2str(countAlegro, ['алергенту', 'алергентах', 'алергентів']));
+// 	} else {
+// 		$(".find-alergo-button").val("Пошук");
+// 	}
+// })
+
+// $(document).on("click", ".find-alergo-button", function(e) {
+// 	e.stopPropagation();
+// 	e.preventDefault();
+// 	var user = JSON.parse(window.sessionStorage.getItem('auth'));
+// 	$.ajax({
+// 	    url: "getData.php", 
+// 	    dataType: "json",
+// 	    data: {"msg": "searchAlergoUser", "data": getInputData, "region": user["type"]}, 
+// 	    type: 'POST', 
+//       	success: function(arr) {
+//       		if(arr.length != 0) {
+//       			$(".mainData").html(createTable(arr, ["П.І.Б. клієнта", "E-mail", "Телефон клієнта", "Дата тестування", "П.І.Б. лікаря", "Телефон лікаря"], false));
+//       		} else {
+//       			$(".mainData").html("<div class='no-data text-center'><p>Дані відсутні!</p></div>");
+//       		}	
+//       		$('.panel-collapse.in').collapse('hide');
+//       		$('html, body').animate({ scrollTop: 0 }, 'fast');
+//       	} 		
+// 	})	
+// })
 
 $(document).on("click", ".find-alergo-button", function(e) {
 	e.stopPropagation();

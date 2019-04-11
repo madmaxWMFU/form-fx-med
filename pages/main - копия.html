@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Реєстраційна картка паціента</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/icon.png">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/app.js"></script>  
+</head>
+
+<body>
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a class="regist" href="registration.html" target="_blanck">Зареєструвати користувача</a></li>
+                <li><a class="singOut">Вихід</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs"> 
+            <ul class="nav nav-tabs" id="myTabs" role="tablist"> 
+                <li class="active">
+                    <a href="#insert" data-toggle="tab">Додати паціента</a>
+                </li>
+                <li>
+                    <a href="#find" data-toggle="tab">Пошук паціента</a>
+                </li> 
+            </ul>
+            <div class="tab-content"> 
+                <div class="tab-pane fade in active" id="insert"> 
+                    <form class="form-horizontal form-wrap findForm">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div>
+                                    <div class="form-group">
+                                        <label for="hospital" class="col-md-3 control-label">Заклад: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="hospital" placeholder="Назва закладу">
+                                        </div>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="surnameDoctor" class="col-md-3 control-label text-align">П.І.Б. лікаря: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="surnameDoctor" placeholder="Іванов І.І.">
+                                        </div>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="region" class="col-md-3 control-label">Область: </label>
+                                        <div class="col-md-9">
+                                            <select id="region" class="form-control">
+                                                <option value="" class="checkOption">Виберіть область</option>
+                                                <option value="1">АР Крим</option>
+                                                <option value="2">Вінницька область</option>
+                                                <option value="3">Волинська область</option>
+                                                <option value="4">Дніпропетровська область</option>
+                                                <option value="5">Донецька область</option>
+                                                <option value="6">Житомирська область</option>
+                                                <option value="7">Закарпатська область</option>
+                                                <option value="8">Запорізька область</option>
+                                                <option value="9">Івано-Франківська область</option>
+                                                <option value="10">Київська область</option>
+                                                <option value="11">Кіровоградська область</option>
+                                                <option value="12">Луганська область</option>
+                                                <option value="13">Львівська область</option>
+                                                <option value="14">Миколаївська область</option>
+                                                <option value="15">Одеська область</option>
+                                                <option value="16">Полтавська область</option>
+                                                <option value="17">Рівненська область</option>
+                                                <option value="18">Сумська область</option>
+                                                <option value="19">Тернопільська область</option>
+                                                <option value="20">Харківська область</option>
+                                                <option value="21">Херсонська область</option>
+                                                <option value="22">Хмельницька область</option>
+                                                <option value="23">Черкаська область</option>
+                                                <option value="24">Чернівецька область  </option>
+                                                <option value="25">Чернігівська область</option>
+                                            </select>
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label for="phoneDoctor" class="col-md-3 control-label text-align">Телефон лікаря: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="phoneDoctor" placeholder="067-123-45-67">
+                                        </div>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="emailDoctor" class="col-md-3 control-label text-align">E-mail лікаря: </label>
+                                        <div class="col-md-9">
+                                            <input type="email" class="form-control" id="emailDoctor" placeholder="test@fxmed.com">
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="dateExamination" class="col-md-3 control-label text-align">Дата огляду: </label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" id="dateExamination">
+                                        </div>
+                                    </div>
+                                    <span class="caption-wrap">Інформація про лікаря</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">    
+                                <div>
+                                    <div class="form-group">
+                                        <label for="surname" class="col-md-3 control-label">Прізвище: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="surname" placeholder="Іванов">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 control-label">Ім'я: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="name" placeholder="Іван">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName" class="col-md-3 control-label text-align">По-батькові: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="lastName" placeholder="Іванов">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dateBirthday" class="col-md-3 control-label text-align">Дата народження: </label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" id="dateBirthday" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Стать: </label>
+                                        <div class="col-md-9">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="genderRadios" value="male"> чоловіча
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="genderRadios" value="female"> жіноча
+                                            </label>
+                                        </div>   
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-md-3 control-label">E-mail: </label>
+                                        <div class="col-md-9">
+                                            <input type="email" class="form-control" id="email" placeholder="test@fxmed.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" class="col-md-3 control-label">Телефон: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="phone" placeholder="067-123-45-67">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address" class="col-md-3 control-label">Адреса: </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="address" placeholder="м. Київ, пр. Перемоги 7">
+                                        </div>
+                                    </div>
+                                    <span class="caption-wrap">Інформація про пацієнта</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Спадковість: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="heredityRadios" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="heredityRadios" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Паління: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="smokyRadios" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="smokyRadios" value="0"> ні
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Професійна діяльність: </label>
+                                        <div class="type-proffesion">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="wokrRadios" value="1"> розумова
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="wokrRadios" value="2"> фізична
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="wokrRadios" value="3"> не працює
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="wokrRadios" value="4"> токсичні впливи
+                                            </label>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Астма: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoRadios1" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoRadios1" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label left-offset left-radio">сезонна: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoSeasonRadios1" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoSeasonRadios1" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-offset-6">
+                                            <label class="control-label left-offset">цілорічна: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoYearRadios1" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoYearRadios1" value="0"> ні
+                                            </label>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Риніт: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoRadios2" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoRadios2" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label left-offset left-radio">сезонна: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoSeasonRadios2" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoSeasonRadios2" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-offset-6">
+                                            <label class="control-label left-offset">цілорічна: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoYearRadios2" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoYearRadios2" value="0"> ні
+                                            </label>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Кон'юнктивіт: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoRadios3" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoRadios3" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label left-offset left-radio">сезонна: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoSeasonRadios3" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoSeasonRadios3" value="0"> ні
+                                            </label>
+                                        </div>
+                                        <div class="col-md-offset-6">
+                                            <label class="control-label left-offset">цілорічна: </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoYearRadios3" value="1"> так
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="alergoYearRadios3" value="0"> ні
+                                            </label>
+                                        </div>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Алергодерматит: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios4" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios4" value="0"> ні
+                                        </label>
+                                    </div>   
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Екзема: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios5" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios5" value="0"> ні
+                                        </label>
+                                    </div>    
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Кропивянка: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios6" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios6" value="0"> ні
+                                        </label>
+                                    </div>     
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Оральний алергічний синдром: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios7" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios7" value="0"> ні
+                                        </label>
+                                    </div>      
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Гастроінтестинальний алергічний синдрон: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios8" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios8" value="0"> ні
+                                        </label>
+                                    </div>      
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Ангіоневротичний набряк: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios9" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios9" value="0"> ні
+                                        </label>
+                                    </div>        
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Анафілактичний шок: </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios10" value="1"> так
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="alergoRadios10" value="0"> ні
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-9 control-label">Результати обстеження: </label>
+                                        <label for="results" class="col-md-3 control-label results-label">ДОДАТИ</label>
+                                        <input type="file" name="results" id="results">
+                                    </div> 
+                                    <div class="form-group">
+                                        <input type="button" value="Зареєструвати пацієнта" class="btn btn-success addClient">
+                                    </div>
+                                    <span class="caption-wrap">Симптоми пацієнта</span>                              
+                                </div>                        
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+                <div class="tab-pane fade" id="find"> 
+                    <div class="row">
+                        <div class="col-md-3">                   
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading1">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">Пилок трави</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo104">Бермудська трава (Cyn d)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo184">Пажитниця багаторічна (Lol p 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo223">Гречка помічена (Pas n)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo232">Тимофіївка лугова (Phl p)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo233">Тимофіївка лугова (Phl p 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo234">Тимофіївка лугова (Phl p 12)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo235">Тимофіївка лугова (Phl p 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo236">Тимофіївка лугова (Phl p 5.0101)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo237">Тимофіївка лугова (Phl p 6)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo238">Тимофіївка лугова (Phl p 7)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo240">Очерет (Phr c)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo266">Жито, пилок (Sec c_pollen)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo274">Сорго алепське (Sor h)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo292">Кукурудза пилок (Zea m pollen)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading2">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse">Пилок дерев</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                        <div class="panel-body"> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo1">Акація (Aca m)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo11">Вільха (Aln g)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo12">Вільха (Aln g 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo50">Береза (Bet v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo51">Береза (Bet v 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo52">Береза (Bet v 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo53">Береза (Bet v 6)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo90">Ліщина (Cor a 1.0103)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo97">Ліщина (Cor a_pollen)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo99">Криптомерія японська (Cry j)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo102">Кипарис (Cup a 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo103">Кипарис (Cup s)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo126">Бук (Fag s)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo134">Ясен (Fra e)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo135">Ясен (Fra e 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo176">Волоський горіх, пилок (Jug r_pollen)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo177">Кедр (Jun a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo181">Бирючина (Lig v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo201">Шовковиця (Mor r)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo205">Пилок оливи (Ole e 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo206">Пилок оливи (Ole e 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo208">Пилок оливи (Ole_pollen)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo239">Фінікова пальма (Pho d 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo244">Платан (Pla a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo245">Платан (Pla a 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo250">Тополя (Pop n)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo257">Дуб (Que r)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo277">Бузок (Syr v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo285">В'яз (Ulm c)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading3">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse">Пилок бур'янів</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                        <div class="panel-body">
+                                           <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo16">Амарант (Щириця) (Ama r)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo17">Амброзія (Amb a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo18">Амброзія (Amb a 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo19">Амброзія (Amb a 4)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo40">Полин (Art v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo41">Полин (Art v 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo42">Полин (Art v 3)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo82">Лобода біла (Che a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo83">Лобода біла (Che a 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo200">Переліска однорічна (Mer a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo221">Настінниця (Par j)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo222">Настінниця (Par j 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo246">Подорожник (Pla l)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo247">Подорожник (Pla l 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo261">Щавель (Rum a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo263">Курай поташевий (Sal k)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo286">Кропива (Urt d)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading4">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse">Європейський кліщ домашнього пилу</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo108">Американський кліщ домашнього пилу (Der f)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo109">Американський кліщ домашнього пилу (Der f 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo110">Американський кліщ домашнього пилу (Der f 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo111">Європейський кліщ домашнього пилу (Der p)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo112">Європейський кліщ домашнього пилу (Der p 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo113">Європейський кліщ домашнього пилу (Der p 10)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo114">Європейський кліщ домашнього пилу (Der p 11)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo115">Європейський кліщ домашнього пилу (Der p 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo116">Європейський кліщ домашнього пилу (Der p 23)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo117">Європейський кліщ домашнього пилу (Der p 5)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo118">Європейський кліщ домашнього пилу (Der p 7)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading5">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse">Борошняний кліщ</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo2">Acarus siro (Aca s)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo59">Blomia tropicalis (Blo t)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo149">Glycyphagus domesticus (Gly d)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo150">Glycyphagus domesticus (Gly d 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo180">Lepidoglyphus destructor (Lep d)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo284">Tyrophagus putrescentiae (Tyr p)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading6">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse">Дріжджі</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo70">Candida Albicans (Can a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo193">Malassezia sympodialis (Mala s 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo194">Malassezia sympodialis (Mala s 11)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo195">Malassezia sympodialis (Mala s 5)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo196">Malassezia sympodialis (Mala s 6)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo197">Malassezia sympodialis (Mala s 9)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo262">Пекарські дріжджі (Sac c)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading7">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse">Пліснява</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo14">Alternaria alternata (Alt a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo15">Alternaria alternata (Alt a 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo43">Aspergillus fumigatus (Asp f)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo44">Aspergillus fumigatus (Asp f 3)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo45">Aspergillus fumigatus (Asp f 4)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo46">Aspergillus fumigatus (Asp f 6)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo88">Cladosporium herbarum (Cla h)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo89">Cladosporium herbarum (Cla h 8)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo225">Penicilium chrysogenum (Pen ch)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading8">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse">Бобові культури</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo33">Арахіс (Ara h)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo34">Арахіс (Ara h 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo35">Арахіс (Ara h 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo36">Арахіс (Ara h 3)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo37">Арахіс (Ara h 6)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo38">Арахіс (Ara h 8)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo39">Арахіс (Ara h 9)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo86">Нут звичайний (Cic a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo151">Соя (Gly m)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo152">Соя (Gly m 4)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo153">Соя (Gly m 5)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo154">Соя (Gly m 6)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo155">Соя (Gly m 8)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo179">Сочевиця (Len c)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo231">Зелена квасоля (Pha v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo242">Горох (Pis s)</label>
+                                            </div>                                     
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading9">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse">Злаки</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo47">Овес (Ave s)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo84">Кіноа (Che q)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo124">Гречка (Fag e)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo124">Гречка (Fag e 2)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo166">Ячмінь (Hor v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo186">Насіння люпину (Lup a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo210">Рис (Ory s)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo218">Пшоно (Pan m)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo265">Жито (Sec c_flour)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo282">Пшениця (Tri a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo283">Пшениця (Tri a Gliadin)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo291">Кукурудза (Zea m)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading10">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapse">Спеції</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading10">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo75">Паприка (Cap a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo78">Кмин звичайний (Car c)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo209">Орегано (Ori v)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo230">Петрушка (Pet c)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo241">Аніс (Pim a)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo269">Гірчиця (Sin)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo270">Гірчиця (Sin a 1)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading11">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false" aria-controls="collapse">Фрукти</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading11">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo3">Ківі (Act d)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo4">Ківі (Act d 1)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo5">Ківі (Act d 10)</label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo6">Ківі (Act d 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo7">Ківі (Act d 5)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo80">Папайя (Car p)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo87">Апельсин (Cit s)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo100">Диня (Cuc m)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo132">Інжир (Fic c)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo133">Полуниця (Fra a)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo182">Лічі (Lit c)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo189">Яблуко (Mal d)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo190">Яблуко (Mal d 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo191">Яблуко (Mal d 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo192">Яблуко (Mal d 3)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo198">Манго (Man i)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo202">Банан (Mus a)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo251">Вишня (Pru av)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo252">Слива (Pru do)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo254">Персик (Pru p)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo255">Персик (Pru p 3)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo256">Груша (Pyr c)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo259">Малина (Rub i)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo287">Чорниця (Vac m)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo290">Виноград (Vit v 1)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading12">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="false" aria-controls="collapse">Овочі та гриби</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading12">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo8">Білий гриб (Aga b)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo9">Цибуля (All c)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo10">Часник (All s)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo25">Селера (Api g)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo26">Селера (Api g 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo27">Селера (Api g 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo28">Селера (Api g 6)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo68">Капуста (Bra o)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo106">Морква (Dau c)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo107">Морква (Dau c 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo178">Салат-латук (Lac s)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo207">Олива (Ole_fruit)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo229">Авокадо (Pers a)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo271">Картопля (Sol t)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo272">Помідор (Sola l)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo273">Помідор (Sola l 6)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading13">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="false" aria-controls="collapse">Горіхи</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo21">Кешью (Ana o)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo22">Кешью (Ana o 3)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo48">Бразильський горіх (Ber e)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo49">Бразильський горіх (Ber e 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo79">Пекан, горіх (Car i)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo91">Фундук (Cor a 1.0401)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo92">Фундук (Cor a 11)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo93">Фундук (Cor a 14)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo94">Фундук (Cor a 8)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo95">Фундук (Cor a 9)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo96">Фундук (Cor a_hazel)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo173">Горіх волоський (Jug r 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo174">Горіх волоський (Jug r 2)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo175">Горіх волоський (Jug r_nut)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo187">Макадамия, горіх (Mac i 2S Albumin)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo188">Макадамия, горіх (Mac inte)</label>
+                                            </div>   
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo243">Фісташкі (Pis v)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo253">Мигдаль (Pru du)</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading14">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false" aria-controls="collapse">Насіння</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading14">
+                                        <div class="panel-body">
+                                           <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo101">Насіння гарбуза (Cuc p)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo156">Соняшник, насіння (Hel a)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo219">Мак (Pap s)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo220">Мак (Pap s 2S Albumin)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo267">Кунжут (Ses i)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo268">Кунжут (Ses i 1)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading15">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="false" aria-controls="collapse">Молоко</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading15">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo61">Коров'яче молоко (Bos d 4)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo62">Коров'яче молоко (Bos d 5)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo64">Коров'яче молоко (Bos d 8)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo67">Коров'яче молоко (Bos d_milk)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo69">Молоко верблюда (Cam d)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo77">Коза, молоко (Cap h_milk)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo123">Кобила, молоко (Equ c_milk)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo216">Вівця, молоко (Ovi a_milk)</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading16">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="false" aria-controls="collapse">Яйце</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading16">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo138">Яєчний білок (Gal d 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo139">Яєчний білок (Gal d 2)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo140">Яєчний білок (Gal d 3)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo141">Яєчний білок (Gal d 4)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo142">Яєчний білок (Gal d 5)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo144">Яєчний білок (Gal d_white)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo145">Яєчний жовток (Gal d_yolk)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading17">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false" aria-controls="collapse">Морепродукти</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading17">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo23">Anisakis simplex (Ani s 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo24">Anisakis simplex (Ani s 3)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo85">Краб (Chi spp.)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo105">Короп (Cyp c 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo136">Атлантична тріска (Gad m)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo137">Атлантична тріска (Gad m 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo164">Омар (Hom g)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo183">Креветка (Lit s)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo185">Кальмар (Lol spp.)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo204">Мідія їстівна (Myt e)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo213">Устриця (Ost e)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo217">Креветка (Pan b)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo224">Морський гребінець (Pec spp.)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo226">Чорна тигрова креветка (Pen m 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo260">Молюск (Rud spp.)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo264">Лосось (Sal s)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo278">Тунець (Thu a)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading18">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse18" aria-expanded="false" aria-controls="collapse">М'ясо</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse18" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading18">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo63">Яловичина (Bos d 6)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo66">Яловичина (Bos d_meat)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo122">Кінь, м'ясо (Equ c_meat)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo143">Курка (Gal d_meat)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo199">М'ясо індички (Mel g)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo212">М'ясо кролика (Ory_meat)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo215">Баранина (Ovi a_meat)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo276">Свиня, м`ясо (Sus d_meat)</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading19">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse19" aria-expanded="false" aria-controls="collapse">Бджола, отрута</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading19">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo29">Бджола медоносна (Api m)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo30">Бджола медоносна (Api m 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo31">Бджола медоносна (Api m 10)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo32">Бджола медоносна (Api m 2)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading20">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse20" aria-expanded="false" aria-controls="collapse">Оса, отрута</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse20" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading20">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo119">Оса саксонська (Dol spp)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo248">Паперова оса (Pol d)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo249">Паперова оса (Pol d 5)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo288">Оса (Ves v)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo289">Оса (Ves v 5)</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading21">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse21" aria-expanded="false" aria-controls="collapse">Тарган</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse21" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading21">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo54">Німецький тарган (Bla g)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo55">Німецький тарган (Bla g 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo56">Німецький тарган (Bla g 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo57">Німецький тарган (Bla g 4)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo58">Німецький тарган (Bla g 5)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo227">Американський тарган (Per a)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo228">Американський тарган (Per a 7)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading22">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse22" aria-expanded="false" aria-controls="collapse">Домашні тварини</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading22">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo71">Собака (Can f)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo72">Собака (Can f 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo73">Собака (Can f 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo74">Собака (Can f 3)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo81">Морська свинка (Cav p)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo98">Хом'як (Cri c)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo127">Кіт (Fel d)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo128">Кіт (Fel d 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo129">Кіт (Fel d 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo130">Кіт (Fel d 4)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo203">Мишь (Mus m 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo211">Епідерміс кролика (Ory_epithelia)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo258">Щур епітелій (Rat n)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading23">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse23" aria-expanded="false" aria-controls="collapse">Домашня худоба</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse23" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading23">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo60">Корова,епітелій (Bos d 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo65">Корова,епітелій (Bos d_epithelia)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo76">Коза, епітелій (Cap h_epithelia)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo120">Кінь (Equ c 1)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo121">Кінь (Equ c_epithelia)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo214">Вівця, епітелій (Ovi a_epithelia)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo275">Свиня, епітелій (Sus d_epithelia)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading24">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse24" aria-expanded="false" aria-controls="collapse">Латекс</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse24" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading24">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo157">Латекс (Hev b)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo158">Латекс (Hev b 1)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo159">Латекс (Hev b 11)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo160">Латекс (Hev b 3)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo161">Латекс (Hev b 5)</label>
+                                            </div>  
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo162">Латекс (Hev b 6.02)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo163">Латекс (Hev b 8)</label>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading25">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse25" aria-expanded="false" aria-controls="collapse">Фікус та Хміль</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse25" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading25">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo131">Фікус (Fic b)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo167">Хміль (Hum l)</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="heading26">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse26" aria-expanded="false" aria-controls="collapse">CCD</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse26" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading26">
+                                        <div class="panel-body">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo20">Ананас (Ana c 2)</label>
+                                            </div> 
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" name="alergo" value="alergo165">Hom s Lactoferrin (Hom s LF)</label>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group find-alergo-wrap">
+                                    <input type="button" value="Пошук" class="btn btn-success find-alergo-button">                   
+                                </div>
+                            </div>    
+                            <span class="caption-wrap">Пошукові дані: </span>                        
+                        </div>
+                        <div class="col-md-9 mainData"></div>
+                    </div>
+                </div> 
+            </div>            
+        </div> 
+        <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Лабораторний звіт клієнта</h4>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>         
+    </main>
+</body>
+</html>

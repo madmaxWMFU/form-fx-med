@@ -1,10 +1,10 @@
 body {
     color: #000;
-    background-color: #d8d4d0;
+    background-color: #e5f5e8;
 }
 
 .header {
-	background-color: #fff;
+	background-color: #5cb85c;
 }
 
 nav>ul {
@@ -21,7 +21,7 @@ nav>ul>li {
 }
 nav>ul>li>a {
 	text-decoration: none;
-	color: #333;
+	color: #fff;
 	font-weight: bold;
 	font-size: 14px;  
 }
@@ -29,11 +29,27 @@ nav>ul>li>a {
 .nav>li {
 	width: 50%;
 	text-align: center;
+	cursor: pointer;
 }
 
 .nav>li>a {
 	color:#333;
 	text-decoration: none;
+    border-bottom: 1px solid #255625;
+    background-color: #e5f5e8;
+    cursor: pointer;
+}
+
+.nav-tabs>li>a:hover {
+	border: 1px solid #255625;
+	background-color: #e5f5e8;
+	cursor: pointer;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus {
+    background-color: #5cb85c;	
+    color: #fff;	
+    cursor: pointer;
 }
 
 .form-wrap {
@@ -61,11 +77,6 @@ nav>ul>li>a {
 
 .col-md-4:last-child() .form-group {
     border-bottom: solid;
-}
-
-hr {
-	border-color: #a9a9a9;
-	margin: 10px 0;
 }
 
 .form-group .col-md-4,  
@@ -128,7 +139,7 @@ hr {
 	top : -11px;
 	left: 13px;
 	font-weight: bold;
-	background-color: #d8d4d0;
+	background-color: #e5f5e8;
 }
 
 .mainData> table {
@@ -166,3 +177,40 @@ hr {
     font-size: 20px;
     font-weight: bold;
 } 
+
+.form-control:focus {
+	border-color: #5cb85c;
+}
+
+#find .type-proffesion {
+	margin-left: 20px;
+}
+
+#find .type-proffesion>.radio {
+	font-weight: 400;
+}
+
+#find .form-group {
+	margin-bottom: 10px;
+}
+
+#find .form-group>label {
+	margin-bottom: 0px;
+}
+
+.wrap-border {
+	border-bottom: 1px solid #5cb85c;
+}
+
+#find .checkbox>.radio {
+	margin-bottom: 10px;
+}
+
+.wrap-offset {
+	margin-top: 0px;
+	margin-left: 20px;
+}
+
+.wrap-offset>.radio:first-child {
+	margin-top: 0px;
+}
