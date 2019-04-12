@@ -414,7 +414,6 @@
 			}
 
 			$query = "SELECT r.id_user, i.surname_user, i.name_user, i.last_name_user, i.email, i.phone, i.surnameDoctor, i.phoneDoctor, i.dateExamination FROM user_results r JOIN user_info i ON i.id_user = r.id_user".$strRegion.$strAlergo;
-			// echo $query;
 			if($result = $mysqli->query($query)) {
 				$row = $result->fetch_assoc();
 				$mainArray = array();
@@ -429,7 +428,30 @@
 			}
 			break;
 		case "searchAlergo": 
-				$a = "SELECT date_birthday, if(((YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d'))) = 36, id_user, 'no') FROM user_info where age = 'no'";
+			$query = "SELECT date_birthday, if(((YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d'))) = 36, id_user, 'no') FROM user_info where age = 'no'";
+			if($result = $mysqli->query($query)) {
+				$row = $result->fetch_assoc();
+				$mainArray = array();
+				do{
+					array_push($mainArray, array($row['surname_user']." ".$row['name_user']." ".$row['last_name_user'], $row['id_user']));
+				}while($row = $result->fetch_assoc());
+				echo json_encode($mainArray);	
+			} else {
+				printError($mysqli->error); 
+			}					
+			break;
+		case "getClientName": 
+			$query = "SELECT id_user, surname_user, name_user, last_name_user FROM user_info WHERE surname_user like '%".$_POST['value']."%'";
+			if($result = $mysqli->query($query)) {
+				$row = $result->fetch_assoc();
+				$mainArray = array();
+				do{
+					array_push($mainArray, array($row['surname_user']." ".$row['name_user']." ".$row['last_name_user'], $row['id_user']));
+				}while($row = $result->fetch_assoc());
+				echo json_encode($mainArray);	
+			} else {
+				printError($mysqli->error); 
+			}							
 			break;
 	}
 

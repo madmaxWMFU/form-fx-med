@@ -39,6 +39,33 @@ $(document).on("click", ".addClient", function(e) {
 	}
 })
 
+$(document).on("click", ".singOut", function(){
+	window.sessionStorage.removeItem('auth');
+	window.open('../index.html', "_self");
+})
+
+$(document).on("keyup", ".client-id", function() {
+	$.ajax({
+		type: "POST",
+		url: "getData.php",
+		data: {"msg": "getClientName", "value": $(this).val()},
+		success: function(arr) {
+			autocomplete(document.getElementById("client-id"), JSON.parse(arr));
+		}
+	})
+})
+
+$(document).on("click", ".find-alergo", function() {
+	$.ajax({
+		type: "POST",
+		url: "getData.php",
+		data: {"msg": "searchAlergo", "data": getFindData()},
+		success: function(arr) {
+			console.log(JSON.parse(arr));
+		}
+	})
+})
+
 function getData() {
 	var fileData = $("#results").prop("files")[0]; 
 	var formData = new FormData();
@@ -85,11 +112,6 @@ function getData() {
 	}
 	return formData;
 }
-
-$(document).on("click", ".singOut", function(){
-	window.sessionStorage.removeItem('auth');
-	window.open('../index.html', "_self");
-})
 
 function init() {
 	if(!window.sessionStorage.getItem('auth'))
@@ -175,32 +197,32 @@ function createTable(data, heads, code) {
 	return table;
 }
 
-function num2str(n, text_forms) {
-    n = Math.abs(n) % 100;
-    var n1 = n % 10;
+// function num2str(n, text_forms) {
+//     n = Math.abs(n) % 100;
+//     var n1 = n % 10;
     
-    if(n > 10 && n < 20) {
-        return text_forms[2];
-    }
+//     if(n > 10 && n < 20) {
+//         return text_forms[2];
+//     }
     
-    if(n1 > 1 && n1 < 5) {
-        return text_forms[1];
-    }
+//     if(n1 > 1 && n1 < 5) {
+//         return text_forms[1];
+//     }
     
-    if(n1 == 1) {
-        return text_forms[0];
-    }
+//     if(n1 == 1) {
+//         return text_forms[0];
+//     }
     
-    return text_forms[2];
-}
+//     return text_forms[2];
+// }
 
-function getInputData() {
-	var arrInput = [];
-	$("[name='alergo']:checked").each(function() {
-		arrInput.push($(this).val());
-	})
-	return arrInput;
-}
+// function getInputData() {
+// 	var arrInput = [];
+// 	$("[name='alergo']:checked").each(function() {
+// 		arrInput.push($(this).val());
+// 	})
+// 	return arrInput;
+// }
 
 // $(document).on("change", "[name='alergo']", function() {
 // 	var countAlegro = $("[name='alergo']:checked").length;
@@ -232,39 +254,18 @@ function getInputData() {
 // 	})	
 // })
 
-$(document).on("click", ".find-alergo-button", function(e) {
-	e.stopPropagation();
-	e.preventDefault();
-	var user = JSON.parse(window.sessionStorage.getItem('auth'));
-	$.ajax({
-	    url: "getData.php", 
-	    dataType: "json",
-	    data: {"msg": "searchAlergoUser", "data": getInputData, "region": user["type"]}, 
-	    type: 'POST', 
-      	success: function(arr) {
-      		if(arr.length != 0) {
-      			$(".mainData").html(createTable(arr, ["П.І.Б. клієнта", "E-mail", "Телефон клієнта", "Дата тестування", "П.І.Б. лікаря", "Телефон лікаря"], false));
-      		} else {
-      			$(".mainData").html("<div class='no-data text-center'><p>Дані відсутні!</p></div>");
-      		}	
-      		$('.panel-collapse.in').collapse('hide');
-      		$('html, body').animate({ scrollTop: 0 }, 'fast');
-      	} 		
-	})	
-})
-
-$(document).on("click", ".table", function(e) {
-	$.ajax({
-	    url: "getData.php", 
-	    dataType: "json",
-	    data: {"msg": "getUserResult", "id": $(e.target).parent().data("id")}, 
-	    type: 'POST', 
-      	success: function(arr) {
-      		$(document).find(".modal-body").html(createTable(arr, ["Позначення", "Алерген", "kUA/L"], true));
-      		$(document).find('.modal').modal('show');
-      	} 		
-	})
-})
+// $(document).on("click", ".table", function(e) {
+// 	$.ajax({
+// 	    url: "getData.php", 
+// 	    dataType: "json",
+// 	    data: {"msg": "getUserResult", "id": $(e.target).parent().data("id")}, 
+// 	    type: 'POST', 
+//       	success: function(arr) {
+//       		$(document).find(".modal-body").html(createTable(arr, ["Позначення", "Алерген", "kUA/L"], true));
+//       		$(document).find('.modal').modal('show');
+//       	} 		
+// 	})
+// })
 
 function checkInputs() {
 	var state = true;
@@ -358,5 +359,21 @@ function clearInputs() {
 	$(".findForm").find("#region").prop("selectedIndex", 0);
 	$(".findForm").find("[type='file']").replaceWith($(".findForm").find("[type='file']").val('').clone(true));
 }
+
+function getFindData() {
+	var features = [],
+		obj = {};
+	$("[name='alergoFind']:checked").each(function() {
+		features.push($(this).data("value"));
+	})
+	return {
+		"clientId": $(".client-id").data("id"),
+		"clientAge": $(".client-age").val(),
+		"clientGender": $("[name='client-gender']:checked").val(),
+		"clientWork": $("[name='client-work']:checked").val(),
+		"clientFeatures": features,
+	};		
+}
+
 
 init();

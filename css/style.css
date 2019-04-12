@@ -128,7 +128,7 @@ nav>ul>li>a {
 	background-color: #e2ab66;
 }
 
-.addClient {
+.addClient, .find-alergo {
 	width: 100%;
 	height: 45px;
 	margin-bottom: 0px; 
@@ -213,4 +213,16 @@ nav>ul>li>a {
 
 .wrap-offset>.radio:first-child {
 	margin-top: 0px;
+}
+
+.autocomplete-items {
+	border: 1px solid #d5d9d6;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.wrap-autocomplite:hover {
+	color: #5cb85c;
 }
