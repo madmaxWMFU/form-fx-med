@@ -45,14 +45,18 @@ $(document).on("click", ".singOut", function(){
 })
 
 $(document).on("keyup", ".client-id", function() {
-	$.ajax({
-		type: "POST",
-		url: "getData.php",
-		data: {"msg": "getClientName", "value": $(this).val()},
-		success: function(arr) {
-			autocomplete(document.getElementById("client-id"), JSON.parse(arr));
-		}
-	})
+	if($(this).val().length > 0) {
+		$.ajax({
+			type: "POST",
+			url: "getData.php",
+			data: {"msg": "getClientName", "value": $(this).val()},
+			success: function(arr) {
+				autocomplete(document.getElementById("client-id"), JSON.parse(arr));
+			}
+		})
+	} else {
+		$(this).removeData("id");
+	}
 })
 
 $(document).on("click", ".find-alergo", function() {
@@ -363,16 +367,30 @@ function clearInputs() {
 function getFindData() {
 	var features = [],
 		obj = {};
-	$("[name='alergoFind']:checked").each(function() {
-		features.push($(this).data("value"));
-	})
-	return {
-		"clientId": $(".client-id").data("id"),
-		"clientAge": $(".client-age").val(),
-		"clientGender": $("[name='client-gender']:checked").val(),
-		"clientWork": $("[name='client-work']:checked").val(),
-		"clientFeatures": features,
-	};		
+
+	if($(".client-id").data("id")) {
+		obj["id_user"] = $(".client-id").data("id");
+	}	
+
+	if($(".client-age").val()) {
+		obj["age"] = $(".client-age").val();
+	}
+
+	if($("[name='client-gender']:checked").length === 1) {
+		obj[$("[name='client-gender']:checked").data("value")] =  $("[name='client-gender']:checked").val();
+	} 
+
+	if($("[name='client-work']:checked").length === 1) {
+		obj[$("[name='client-work']:checked").data("value")] =  $("[name='client-work']:checked").val();
+	} 	
+
+	if($(".alergoFind:checked").length != 0) {
+		$(".alergoFind:checked").each(function() {
+			features.push($(this).data("value"));
+		})		
+		obj["clientFeatures"] = features;
+	}
+	return obj;
 }
 
 

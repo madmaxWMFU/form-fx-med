@@ -427,18 +427,51 @@
 				printError($mysqli->error); 
 			}
 			break;
-		case "searchAlergo": 
-			$query = "SELECT date_birthday, if(((YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d'))) = 36, id_user, 'no') FROM user_info where age = 'no'";
+		case "searchAlergo": 			
+			$data = $_POST['data'];
+			$query = "SELECT id_user FROM user_info WHERE ";
+			foreach ($data as $key => $value) {
+				if($key === "age" && sizeof($data) === 1) {
+					$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info";
+				} elseif($key === "age") {
+					$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info WHERE ";					
+				} else {
+					if(is_array($value)) {
+						$query .= getFeatures($value);
+					} else {
+						$query .= $key." = '".$value."' and ";
+					}
+
+				}
+
+				if($key === "id_user") {
+					$query = "SELECT * FROM user_results WHERE id_user = ".$value;
+					break;
+				}
+			}
+
+			if(substr($query, -4) == "and ") {
+				$query = substr($query, 0, -4);
+			}
+
 			if($result = $mysqli->query($query)) {
 				$row = $result->fetch_assoc();
 				$mainArray = array();
-				do{
-					array_push($mainArray, array($row['surname_user']." ".$row['name_user']." ".$row['last_name_user'], $row['id_user']));
-				}while($row = $result->fetch_assoc());
-				echo json_encode($mainArray);	
+				if(isset($data['age'])) {
+					do{
+						if($row['age'] == $data['age']){
+							array_push($mainArray, $row);
+						}
+					}while($row = $result->fetch_assoc());		
+				} else {
+					do{
+						array_push($mainArray, $row);
+					}while($row = $result->fetch_assoc());
+				}
+				getAlergoByUsers($mainArray);	
 			} else {
 				printError($mysqli->error); 
-			}					
+			}	
 			break;
 		case "getClientName": 
 			$query = "SELECT id_user, surname_user, name_user, last_name_user FROM user_info WHERE surname_user like '%".$_POST['value']."%'";
@@ -456,4 +489,37 @@
 	}
 
 	$mysqli->close();
+
+	function getFeatures($arr) {
+		$str = "";
+		for($i=0; $i<sizeof($arr); $i++) {
+			if($i != sizeof($arr)-1) {
+				$str .= $arr[$i]." = 1 and ";
+			} else {
+				$str .= $arr[$i]." = 1 ";
+			}			 
+		}
+		return $str;
+	}
+
+	function getAlergoByUsers($arr) {
+		Global $mysqli;
+		$alergoResults = array();
+		if(!is_null($arr)) {
+			foreach ($arr as $key => $value) {
+				$query = "SELECT * FROM user_results WHERE id_user = ".$value['id_user'];
+				if($result = $mysqli->query($query)) {
+					$row = $result->fetch_assoc();
+					do{
+						array_push($alergoResults, $row);
+					}while($row = $result->fetch_assoc());	
+				} else {
+					printError($mysqli->error); 
+				}
+			}
+			echo json_encode($alergoResults);
+		} else {
+			printError("no data");
+		}
+	}
 ?>
