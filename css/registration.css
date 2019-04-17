@@ -1,5 +1,5 @@
 body {
-  background: #eecf535e;
+  background: #d8ebdc;
 }
 form {
   width: 40%;
@@ -83,16 +83,14 @@ label {
 
 .connect:hover, .connect:focus,
 .createUser:hover, .createUser:focus {
-  background: #eecf535e;
-  color: #333;
-  outline: solid 1px #8BC34A;
-  border-radius: 3px;
+  background: #5cb85c;
+  color: #fff;
 }
 
 .connect:hover,
 .createUser:hover {
-  background: #eecf535e;
-  color: #333;
+  background: #5cb85c;
+  color: #fff;
 }
 
 .error {

@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Реєстраційна картка паціента</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../img/icon.png">
+    <script type="text/javascript" src="../js/shim.min.js"></script>
+    <script type="text/javascript" src="../js/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="../js/Blob.js"></script>
+    <script type="text/javascript" src="../js/FileSaver.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/autocomplete.js"></script>
@@ -135,10 +140,10 @@
                                         <label class="col-md-3 control-label">Стать: </label>
                                         <div class="col-md-9">
                                             <label class="radio-inline">
-                                                <input type="radio" name="genderRadios" value="male" required> чоловіча
+                                                <input type="radio" name="genderRadios" value="male"> чоловіча
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="genderRadios" value="female" required> жіноча
+                                                <input type="radio" name="genderRadios" value="female"> жіноча
                                             </label>
                                         </div>   
                                     </div>
@@ -169,19 +174,19 @@
                                         <div class="col-md-6">
                                             <label class="control-label">Спадковість: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="heredityRadios" value="1" required > так
+                                                <input type="radio" name="heredityRadios" value="1" > так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="heredityRadios" value="0" required> ні
+                                                <input type="radio" name="heredityRadios" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="control-label">Паління: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="smokyRadios" value="1" required> так
+                                                <input type="radio" name="smokyRadios" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="smokyRadios" value="0" required> ні
+                                                <input type="radio" name="smokyRadios" value="0"> ні
                                             </label>
                                         </div>
                                     </div>
@@ -189,16 +194,16 @@
                                         <label class="control-label">Професійна діяльність: </label>
                                         <div class="type-proffesion">
                                             <label class="radio-inline">
-                                                <input type="radio" name="wokrRadios" value="1" required> розумова
+                                                <input type="radio" name="wokrRadios" value="1"> розумова
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="wokrRadios" value="2" required> фізична
+                                                <input type="radio" name="wokrRadios" value="2"> фізична
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="wokrRadios" value="3" required> не працює
+                                                <input type="radio" name="wokrRadios" value="3"> не працює
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="wokrRadios" value="4" required> токсичні впливи
+                                                <input type="radio" name="wokrRadios" value="4"> токсичні впливи
                                             </label>
                                         </div>
                                     </div> 
@@ -206,28 +211,28 @@
                                         <div class="col-md-6">
                                             <label class="control-label">Астма: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoRadios1" value="1" required> так
+                                                <input type="radio" name="alergoRadios1" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoRadios1" value="0" required> ні
+                                                <input type="radio" name="alergoRadios1" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="control-label left-offset left-radio">сезонна: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoSeasonRadios1" value="1" required> так
+                                                <input type="radio" name="alergoSeasonRadios1" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoSeasonRadios1" value="0" required> ні
+                                                <input type="radio" name="alergoSeasonRadios1" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-offset-6">
                                             <label class="control-label left-offset">цілорічна: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoYearRadios1" value="1" required> так
+                                                <input type="radio" name="alergoYearRadios1" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoYearRadios1" value="0" required> ні
+                                                <input type="radio" name="alergoYearRadios1" value="0"> ні
                                             </label>
                                         </div>
                                     </div> 
@@ -235,28 +240,28 @@
                                         <div class="col-md-6">
                                             <label class="control-label">Риніт: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoRadios2" value="1" required> так
+                                                <input type="radio" name="alergoRadios2" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoRadios2" value="0" required> ні
+                                                <input type="radio" name="alergoRadios2" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="control-label left-offset left-radio">сезонна: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoSeasonRadios2" value="1" required> так
+                                                <input type="radio" name="alergoSeasonRadios2" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoSeasonRadios2" value="0" required> ні
+                                                <input type="radio" name="alergoSeasonRadios2" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-offset-6">
                                             <label class="control-label left-offset">цілорічна: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoYearRadios2" value="1" required> так
+                                                <input type="radio" name="alergoYearRadios2" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoYearRadios2" value="0" required> ні
+                                                <input type="radio" name="alergoYearRadios2" value="0"> ні
                                             </label>
                                         </div>
                                     </div> 
@@ -264,102 +269,101 @@
                                         <div class="col-md-6">
                                             <label class="control-label">Кон'юнктивіт: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoRadios3" value="1" required> так
+                                                <input type="radio" name="alergoRadios3" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoRadios3" value="0" required> ні
+                                                <input type="radio" name="alergoRadios3" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="control-label left-offset left-radio">сезонна: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoSeasonRadios3" value="1" required> так
+                                                <input type="radio" name="alergoSeasonRadios3" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoSeasonRadios3" value="0" required> ні
+                                                <input type="radio" name="alergoSeasonRadios3" value="0"> ні
                                             </label>
                                         </div>
                                         <div class="col-md-offset-6">
                                             <label class="control-label left-offset">цілорічна: </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoYearRadios3" value="1" required> так
+                                                <input type="radio" name="alergoYearRadios3" value="1"> так
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="alergoYearRadios3" value="0" required> ні
+                                                <input type="radio" name="alergoYearRadios3" value="0"> ні
                                             </label>
                                         </div>
                                     </div>  
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Алергодерматит: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios4" value="1" required> так
+                                            <input type="radio" name="alergoRadios4" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios4" value="0" required> ні
+                                            <input type="radio" name="alergoRadios4" value="0"> ні
                                         </label>
                                     </div>   
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Екзема: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios5" value="1" required> так
+                                            <input type="radio" name="alergoRadios5" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios5" value="0" required> ні
+                                            <input type="radio" name="alergoRadios5" value="0"> ні
                                         </label>
                                     </div>    
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Кропивянка: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios6" value="1" required> так
+                                            <input type="radio" name="alergoRadios6" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios6" value="0" required> ні
+                                            <input type="radio" name="alergoRadios6" value="0"> ні
                                         </label>
                                     </div>     
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Оральний алергічний синдром: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios7" value="1" required> так
+                                            <input type="radio" name="alergoRadios7" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios7" value="0" required> ні
+                                            <input type="radio" name="alergoRadios7" value="0"> ні
                                         </label>
                                     </div>      
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Гастроінтестинальний алергічний синдрон: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios8" value="1" required> так
+                                            <input type="radio" name="alergoRadios8" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios8" value="0" required> ні
+                                            <input type="radio" name="alergoRadios8" value="0"> ні
                                         </label>
                                     </div>      
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Ангіоневротичний набряк: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios9" value="1" required> так
+                                            <input type="radio" name="alergoRadios9" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios9" value="0" required> ні
+                                            <input type="radio" name="alergoRadios9" value="0"> ні
                                         </label>
                                     </div>        
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Анафілактичний шок: </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios10" value="1" required> так
+                                            <input type="radio" name="alergoRadios10" value="1"> так
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="alergoRadios10" value="0" required> ні
+                                            <input type="radio" name="alergoRadios10" value="0"> ні
                                         </label>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-9 control-label">Результати обстеження: </label>
                                         <label for="results" class="col-md-3 control-label results-label">ДОДАТИ</label>
-                                        <input type="file" name="results" id="results">
+                                        <input type="file" name="results" id="results" required>
                                     </div> 
                                     <div class="form-group">
-                                        <!-- <input type="button" value="Зареєструвати пацієнта" class="btn btn-success addClient"> -->
-                                        <input type="submit" value="Зареєструвати пацієнта" class="btn btn-success">
+                                        <input type="button" value="Зареєструвати пацієнта" class="btn btn-success addClient">
                                     </div>
                                     <span class="caption-wrap">Симптоми пацієнта</span>                              
                                 </div>                        
@@ -505,10 +509,352 @@
                             </div>                                              
                             <div class="form-group">
                                 <input type="button" value="Пошук" class="btn btn-success find-alergo">
+                            </div>                                               
+                            <div class="form-group">
+                                <input type="button" value="Очистити пошукові дані" class="btn btn-warning clear-find-inputs">
                             </div>                       
                             <span class="caption-wrap">Пошукові дані: </span>          
                         </div>
-                        <div class="col-md-9 mainData"></div>
+                        <div class="col-md-9 mainData">
+                            <div class="load-wrap">
+                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                            </div>
+                            <div class="data-wrap">
+                                <div class="table-wrap">
+                                    <table id="data-table" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" colspan="51">Пилок</th>
+                                                <th class="text-center" colspan="17">Кліщ</th>
+                                                <th class="text-center" colspan="16">Пліснява та дріжжі</th>
+                                                <th class="text-center" colspan="101">Овочі</th>
+                                                <th class="text-center" colspan="40">Продукти тваринного походження</th>
+                                                <th class="text-center" colspan="16">Яд комах</th>
+                                                <th class="text-center" colspan="20">Тваринного пожодження</th>
+                                                <th class="text-center" colspan="11">Інший</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-truncate text-left">
+                                            <tr>
+                                                <td class="text-center" colspan="14">Пилок трави</td>
+                                                <td class="text-center" colspan="30">Пилок дерев</td>
+                                                <td class="text-center" colspan="17">Пилок бур'янів</td>
+                                                <td class="text-center" colspan="11">Європейський кліщ домашнього пилу</td>
+                                                <td class="text-center" colspan="6">Борошняний кліщ</td>
+                                                <td class="text-center" colspan="7">Дріжджі</td>
+                                                <td class="text-center" colspan="9">Пліснява</td>
+                                                <td class="text-center" colspan="16">Бобові культури</td>
+                                                <td class="text-center" colspan="13">Злаки</td>
+                                                <td class="text-center" colspan="7">Спеції</td>
+                                                <td class="text-center" colspan="25">Фрукти</td>
+                                                <td class="text-center" colspan="16">Овочі та гриби</td>
+                                                <td class="text-center" colspan="18">Горіхи</td>
+                                                <td class="text-center" colspan="6">Насіння</td>
+                                                <td class="text-center" colspan="8">Молоко</td>
+                                                <td class="text-center" colspan="7">Яйце</td>
+                                                <td class="text-center" colspan="17">Морепродукти</td>
+                                                <td class="text-center" colspan="8">М'ясо</td>
+                                                <td class="text-center" colspan="4">Бджола, отрута</td>
+                                                <td class="text-center" colspan="5">Оса, отрута</td>
+                                                <td class="text-center" colspan="7">Тарган</td>
+                                                <td class="text-center" colspan="13">Домашні тварини</td>
+                                                <td class="text-center" colspan="7">Домашня худоба</td>
+                                                <td class="text-center" colspan="7">Латекс</td>
+                                                <td class="text-center" colspan="2">Фікус та Хміль</td>
+                                                <td class="text-center" colspan="2">CCD</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Бермудська трава "Cyn d"</td>
+                                                <td>Пажитниця багаторічна "Lol p 1"</td>
+                                                <td>Гречка помічена "Pas n"</td>
+                                                <td>Тимофіївка лугова "Phl p"</td>
+                                                <td>Тимофіївка лугова "Phl p 1"</td>
+                                                <td>Тимофіївка лугова "Phl p 12"</td>
+                                                <td>Тимофіївка лугова "Phl p 2"</td>
+                                                <td>Тимофіївка лугова "Phl p 5.0101"</td>
+                                                <td>Тимофіївка лугова "Phl p 6"</td>
+                                                <td>Тимофіївка лугова "Phl p 7"</td>
+                                                <td>Очерет "Phr c"</td>
+                                                <td>Жито, пилок "Sec c_pollen"</td>
+                                                <td>Сорго алепське "Sor h"</td>
+                                                <td>Кукурудза пилок "Zea m pollen"</td>
+                                                <td>Акація "Aca m"</td>
+                                                <td>Вільха "Aln g"</td>
+                                                <td>Вільха "Aln g 1"</td>
+                                                <td>Вільха "Aln g 4"</td>
+                                                <td>Береза "Bet v"</td>
+                                                <td>Береза "Bet v 1"</td>
+                                                <td>Береза "Bet v 2"</td>
+                                                <td>Береза "Bet v 6"</td>
+                                                <td>Ліщина "Cor a 1.0103"</td>
+                                                <td>Ліщина "Cor a_pollen"</td>
+                                                <td>Криптомерія японська "Cry j"</td>
+                                                <td>Кипарис "Cup a 1"</td>
+                                                <td>Кипарис "Cup s"</td>
+                                                <td>Бук "Fag s"</td>
+                                                <td>Ясен "Fra e"</td>
+                                                <td>Ясен "Fra e 1"</td>
+                                                <td>Волоський горіх, пилок "Jug r_pollen"</td>
+                                                <td>Кедр "Jun a" </td>
+                                                <td>Бирючина "Lig v" </td>
+                                                <td>Шовковиця "Mor r" </td>
+                                                <td>Пилок оливи "Ole e 1" </td>
+                                                <td>Пилок оливи "Ole e 2" </td>
+                                                <td>Пилок оливи "Ole_pollen" </td>
+                                                <td>Фінікова пальма "Pho d 2" </td>
+                                                <td>Платан "Pla a" </td>
+                                                <td>Платан "Pla a 1" </td>
+                                                <td>Тополя "Pop n" </td>
+                                                <td>Дуб "Que r" </td>
+                                                <td>Бузок "Syr v" </td>
+                                                <td>В'яз "Ulm c"</td>
+                                                <td>Амарант "Ama r" </td>
+                                                <td>Амброзія "Amb a" </td>
+                                                <td>Амброзія "Amb a 1" </td>
+                                                <td>Амброзія "Amb a 4" </td>
+                                                <td>Полин "Art v" </td>
+                                                <td>Полин "Art v 1" </td>
+                                                <td>Полин "Art v 3" </td>
+                                                <td>Лобода біла "Che a" </td>
+                                                <td>Лобода біла Che a 1" </td>
+                                                <td>Переліска однорічна "Mer a" </td>
+                                                <td>Настінниця "Par j" </td>
+                                                <td>Настінниця "Par j 2" </td>
+                                                <td>Подорожник "Pla l" </td>
+                                                <td>Подорожник "Pla l 1" </td>
+                                                <td>Щавель "Rum a" </td>
+                                                <td>Курай поташевий "Sal k"</td>
+                                                <td>Кропива "Urt d"</td>
+                                                <td>Американський кліщ домашнього пилу "Der f" </td>
+                                                <td>Американський кліщ домашнього пилу "Der f 1" </td>
+                                                <td>Американський кліщ домашнього пилу "Der f 2" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 1" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 10" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 11" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 2" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 23" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 5" </td>
+                                                <td>Європейський кліщ домашнього пилу "Der p 7"</td>
+                                                <td>Acarus siro "Aca s" </td>
+                                                <td>Blomia tropicalis "Blo t" </td>
+                                                <td>Glycyphagus domesticus "Gly d" </td>
+                                                <td>Glycyphagus domesticus "Gly d 2" </td>
+                                                <td>Lepidoglyphus destructor Lep d" </td>
+                                                <td>Tyrophagus putrescentiae "Tyr p"</td>
+                                                <td>Candida Albicans "Can a" </td>
+                                                <td>Malassezia sympodialis "Mala s 1" </td>
+                                                <td>Malassezia sympodialis "Mala s 11" </td>
+                                                <td>Malassezia sympodialis "Mala s 5" </td>
+                                                <td>Malassezia sympodialis "Mala s 6" </td>
+                                                <td>Malassezia sympodialis "Mala s 9" </td>
+                                                <td>Пекарські дріжджі "Sac c"</td>
+                                                <td>Alternaria alternata "Alt a" </td>
+                                                <td>Alternaria alternata "Alt a 1" </td>
+                                                <td>Aspergillus fumigatus "Asp f" </td>
+                                                <td>Aspergillus fumigatus "Asp f 3" </td>
+                                                <td>Aspergillus fumigatus "Asp f 4" </td>
+                                                <td>Aspergillus fumigatus "Asp f 6" </td>
+                                                <td>Cladosporium herbarum "Cla h" </td>
+                                                <td>Cladosporium herbarum "Cla h 8" </td>
+                                                <td>Penicilium chrysogenum "Pen ch"</td>
+                                                <td>Арахіс "Ara h" </td>
+                                                <td>Арахіс "Ara h 1" </td>
+                                                <td>Арахіс "Ara h 2" </td>
+                                                <td>Арахіс "Ara h 3" </td>
+                                                <td>Арахіс "Ara h 6" </td>
+                                                <td>Арахіс "Ara h 8" </td>
+                                                <td>Арахіс "Ara h 9" </td>
+                                                <td>Нут звичайний "Cic a" </td>
+                                                <td>Соя "Gly m" </td>
+                                                <td>Соя "Gly m 4" </td>
+                                                <td>Соя "Gly m 5" </td>
+                                                <td>Соя "Gly m 6" </td>
+                                                <td>Соя "Gly m 8" </td>
+                                                <td>Сочевиця "Len c" </td>
+                                                <td>Зелена квасоля "Pha v" </td>
+                                                <td>Горох "Pis s"</td>
+                                                <td>Гречка "Fag e" </td>
+                                                <td>Гречка "Fag e 2" </td>
+                                                <td>Ячмінь "Hor v" </td>
+                                                <td>Насіння люпину "Lup a" </td>
+                                                <td>Рис "Ory s" </td>
+                                                <td>Пшоно "Pan m" </td>
+                                                <td>Жито "Sec c_flour" </td>
+                                                <td>Пшениця "Tri a" </td>
+                                                <td>Пшениця "Tri a Gliadin" </td>
+                                                <td>Пшениця спельта "Tri s" </td>
+                                                <td>Кукурудза "Zea m"</td>
+                                                <td>Паприка "Cap a" </td>
+                                                <td>Кмин звичайний "Car c" </td>
+                                                <td>Орегано "Ori v" </td>
+                                                <td>Петрушка "Pet c" </td>
+                                                <td>Аніс "Pim a" </td>
+                                                <td>Гірчиця "Sin" </td>
+                                                <td>Гірчиця "Sin a 1"</td>
+                                                <td>Ківі "Act d" </td>
+                                                <td>Ківі "Act d 1" </td>
+                                                <td>Ківі "Act d 10" </td>
+                                                <td>Ківі "Act d 2" </td>
+                                                <td>Ківі "Act d 5" </td>
+                                                <td>Папайя "Car p" </td>
+                                                <td>Апельсин "Cit s" </td>
+                                                <td>Диня "Cuc m" </td>
+                                                <td>Інжир "Fic c" </td>
+                                                <td>Полуниця "Fra a" </td>
+                                                <td>Лічі "Lit c" </td>
+                                                <td>Яблуко "Mal d" </td>
+                                                <td>Яблуко "Mal d 1" </td>
+                                                <td>Яблуко "Mal d 2" </td>
+                                                <td>Яблуко "Mal d 3" </td>
+                                                <td>Манго "Man i" </td>
+                                                <td>Банан "Mus a" </td>
+                                                <td>Вишня "Pru av" </td>
+                                                <td>Слива "Pru do" </td>
+                                                <td>Персик "Pru p" </td>
+                                                <td>Персик "Pru p 3" </td>
+                                                <td>Груша "Pyr c" </td>
+                                                <td>Малина "Rub i" </td>
+                                                <td>Чорниця "Vac m" </td>
+                                                <td>Виноград "Vit v 1"</td>
+                                                <td>Білий гриб "Aga b" </td>
+                                                <td>Цибуля "All c" </td>
+                                                <td>Часник "All s" </td>
+                                                <td>Селера "Api g" </td>
+                                                <td>Селера "Api g 1" </td>
+                                                <td>Селера "Api g 2" </td>
+                                                <td>Селера "Api g 6" </td>
+                                                <td>Капуста "Bra o" </td>
+                                                <td>Морква "Dau c" </td>
+                                                <td>Морква "Dau c 1" </td>
+                                                <td>Салат-латук "Lac s" </td>
+                                                <td>Олива "Ole_fruit" </td>
+                                                <td>Авокадо "Pers a" </td>
+                                                <td>Картопля "Sol t" </td>
+                                                <td>Помідор "Sola l" </td>
+                                                <td>Помідор "Sola l 6"</td>
+                                                <td>Кешью "Ana o" </td>
+                                                <td>Кешью "Ana o 3" </td>
+                                                <td>Бразильський горіх "Ber e" </td>
+                                                <td>Бразильський горіх "Ber e 1" </td>
+                                                <td>Пекан, горіх "Car i" </td>
+                                                <td>Фундук "Cor a 1.0401" </td>
+                                                <td>Фундук "Cor a 11" </td>
+                                                <td>Фундук "Cor a 14" </td>
+                                                <td>Фундук "Cor a 8" </td>
+                                                <td>Фундук "Cor a 9" </td>
+                                                <td>Фундук "Cor a_hazel" </td>
+                                                <td>Горіх волоський "Jug r 1" </td>
+                                                <td>Горіх волоський "Jug r 2" </td>
+                                                <td>Горіх волоський "Jug r_nut" </td>
+                                                <td>Макадамия, горіх "Mac i 2S Albumin" </td>
+                                                <td>Макадамия, горіх "Mac inte" </td>
+                                                <td>Фісташкі "Pis v" </td>
+                                                <td>Мигдаль "Pru du"</td>
+                                                <td>Насіння гарбуза "Cuc p" </td>
+                                                <td>Соняшник, насіння "Hel a" </td>
+                                                <td>Мак "Pap s" </td>
+                                                <td>Мак "Pap s 2S Albumin" </td>
+                                                <td>Кунжут "Ses i" </td>
+                                                <td>Кунжут "Ses i 1"</td>
+                                                <td>Коров'яче молоко "Bos d 4" </td>
+                                                <td>Коров'яче молоко "Bos d 5" </td>
+                                                <td>Коров'яче молоко "Bos d 8" </td>
+                                                <td>Коров'яче молоко "Bos d_milk" </td>
+                                                <td>Молоко верблюда "Cam d" </td>
+                                                <td>Коза, молоко "Cap h_milk" </td>
+                                                <td>Кобила, молоко "Equ c_milk" </td>
+                                                <td>Вівця, молоко "Ovi a_milk"</td>
+                                                <td>Яєчний білок "Gal d 1" </td>
+                                                <td>Яєчний білок "Gal d 2" </td>
+                                                <td>Яєчний білок "Gal d 3" </td>
+                                                <td>Яєчний білок "Gal d 4" </td>
+                                                <td>Яєчний жовток "Gal d 5" </td>
+                                                <td>Яєчний білок "Gal d_white" </td>
+                                                <td>Яєчний жовток "Gal d_yolk"</td>
+                                                <td>Anisakis simplex "Ani s 1" </td>
+                                                <td>Anisakis simplex "Ani s 3" </td>
+                                                <td>Краб "Chi spp."</td>
+                                                <td>Короп "Cyp c 1"</td>
+                                                <td>Атлантична тріска "Gad m"</td>
+                                                <td>Атлантична тріска "Gad m 1"</td>
+                                                <td>Омар "Hom g"</td>
+                                                <td>Креветка "Lit s"</td>
+                                                <td>Кальмар "Lol spp."</td>
+                                                <td>Мідія їстівна "Myt e"</td>
+                                                <td>Устриця "Ost e"</td>
+                                                <td>Креветка "Pan b"</td>
+                                                <td>Морський гребінець "Pec spp."</td>
+                                                <td>Чорна тигрова креветка "Pen m 1"</td>
+                                                <td>Молюск "Rud spp."</td>
+                                                <td>Лосось "Sal s"</td>
+                                                <td>Тунець "Thu a"</td>
+                                                <td>Яловичина "Bos d 6"</td>
+                                                <td>Яловичина "Bos d_meat"</td>
+                                                <td>Кінь, м'ясо "Equ c_meat"</td>
+                                                <td>Курка "Gal d_meat"</td>
+                                                <td>М'ясо індички "Mel g"</td>
+                                                <td>М'ясо кролика "Ory_meat"</td>
+                                                <td>Баранина "Ovi a_meat"</td>
+                                                <td>Свиня, м`ясо "Sus d_meat"</td>
+                                                <td>Бджола медоносна "Api m"</td>
+                                                <td>Бджола медоносна "Api m 1"</td>
+                                                <td>Бджола медоносна "Api m 10"</td>
+                                                <td>Бджола медоносна "Api m 2"</td>
+                                                <td>Оса саксонська "Dol spp"</td>
+                                                <td>Паперова оса "Pol d"</td>
+                                                <td>Паперова оса "Pol d 5"</td>
+                                                <td>Оса "Ves v"</td>
+                                                <td>Оса "Ves v 5"</td>
+                                                <td>Німецький тарган "Bla g"</td>
+                                                <td>Німецький тарган "Bla g 1"</td>
+                                                <td>Німецький тарган "Bla g 2"</td>
+                                                <td>Німецький тарган "Bla g 4"</td>
+                                                <td>Німецький тарган "Bla g 5"</td>
+                                                <td>Американський тарган "Per a"</td>
+                                                <td>Американський тарган "Per a 7"</td>
+                                                <td>Собака "Can f"</td>
+                                                <td>Собака "Can f 1"</td>
+                                                <td>Собака "Can f 2"</td>
+                                                <td>Собака "Can f 3"</td>
+                                                <td>Морська свинка "Cav p"</td>
+                                                <td>Хом'як "Cri c"</td>
+                                                <td>Кіт "Fel d"</td>
+                                                <td>Кіт "Fel d 1"</td>
+                                                <td>Кіт "Fel d 2"</td>
+                                                <td>Кіт "Fel d 4"</td>
+                                                <td>Мишь "Mus m 1"</td>
+                                                <td>Епідерміс кролика "Ory_epithelia"</td>
+                                                <td>Щур епітелій "Rat n"</td>
+                                                <td>Корова,епітелій "Bos d 2"</td>
+                                                <td>Корова,епітелій "Bos d_epithelia"</td>
+                                                <td>Коза, епітелій "Cap h_epithelia"</td>
+                                                <td>Кінь "Equ c 1"</td>
+                                                <td>Кінь "Equ c_epithelia"</td>
+                                                <td>Вівця, епітелій "Ovi a_epithelia"</td>
+                                                <td>Свиня, епітелій "Sus d_epithelia"</td>
+                                                <td>Латекс "Hev b"</td>
+                                                <td>Латекс "Hev b 1"</td>
+                                                <td>Латекс "Hev b 11"</td>
+                                                <td>Латекс "Hev b 3"</td>
+                                                <td>Латекс "Hev b 5"</td>
+                                                <td>Латекс "Hev b 6.02"</td>
+                                                <td>Латекс "Hev b 8"</td>
+                                                <td>Фікус "Fic b"</td>
+                                                <td>Хміль "Hum l"</td>
+                                                <td>Ананас "Ana c 2"</td>
+                                                <td>Hom s Lactoferrin "Hom s LF"</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                                <input type="submit" class="btn btn-success data-download" value="Завантажити данні">
+                            </div>
+                            <div class="msg-wrap">
+                                <label class="msg">Виберіть данні для пошуку!</label>
+                            </div>
+                        </div>
                     </div>
                 </div> 
             </div>            
@@ -527,5 +873,8 @@
             </div>
         </div>         
     </main>
+<script>
+
+</script>    
 </body>
 </html>

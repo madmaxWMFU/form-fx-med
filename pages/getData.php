@@ -33,7 +33,7 @@
 										"Вільха" => array($row['alergo11'], "Aln g"),
 										"Вільха" => array($row['alergo12'], "Aln g 1"),
 										"Вільха" => array($row['alergo13'], "Aln g 4"),
-										"Береза " => array($row['alergo50'], "Bet v"),
+										"Береза " => array($row['alergo50'], "Aln g 4"),
 										"Береза " => array($row['alergo51'], "Bet v 1"),
 										"Береза " => array($row['alergo52'], "Bet v 2"),
 										"Береза " => array($row['alergo53'], "Bet v 6"),
@@ -429,23 +429,29 @@
 			break;
 		case "searchAlergo": 			
 			$data = $_POST['data'];
-			$query = "SELECT id_user FROM user_info WHERE ";
+			if($_POST["regionType"] == 0) {
+				$region = "";
+			} else {
+				$region = "region = ".$_POST["regionType"]." and ";
+			}
+			$query = "SELECT id_user FROM user_info WHERE ".$region;
+			
 			foreach ($data as $key => $value) {
-				if($key === "age" && sizeof($data) === 1) {
-					$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info";
-				} elseif($key === "age") {
-					$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info WHERE ";					
+				// if($key === "age" && sizeof($data) === 1) {
+				// 	$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info ";
+				// } else
+				if($key === "age") {
+					$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info WHERE ".$region;					
 				} else {
 					if(is_array($value)) {
 						$query .= getFeatures($value);
 					} else {
 						$query .= $key." = '".$value."' and ";
 					}
-
 				}
 
 				if($key === "id_user") {
-					$query = "SELECT * FROM user_results WHERE id_user = ".$value;
+					$query = "SELECT * FROM user_results WHERE ".$region."id_user = ".$value;
 					break;
 				}
 			}
@@ -453,7 +459,7 @@
 			if(substr($query, -4) == "and ") {
 				$query = substr($query, 0, -4);
 			}
-
+			// echo $query;
 			if($result = $mysqli->query($query)) {
 				$row = $result->fetch_assoc();
 				$mainArray = array();
@@ -505,19 +511,26 @@
 	function getAlergoByUsers($arr) {
 		Global $mysqli;
 		$alergoResults = array();
-		if(!is_null($arr)) {
+		if(count($arr[0]) != 0) {
+		// if(!is_null($arr)) {
 			foreach ($arr as $key => $value) {
-				$query = "SELECT * FROM user_results WHERE id_user = ".$value['id_user'];
-				if($result = $mysqli->query($query)) {
-					$row = $result->fetch_assoc();
-					do{
-						array_push($alergoResults, $row);
-					}while($row = $result->fetch_assoc());	
-				} else {
-					printError($mysqli->error); 
-				}
+				// if($value['id_user'] == "") {
+					$query = "SELECT * FROM user_results WHERE id_user = ".$value['id_user'];
+					if($result = $mysqli->query($query)) {
+						$row = $result->fetch_assoc();
+						do{
+							array_push($alergoResults,	array($row['alergo104'], $row['alergo184'], $row['alergo223'], $row['alergo232'], $row['alergo233'], $row['alergo234'], $row['alergo235'], $row['alergo236'], $row['alergo237'], $row['alergo238'], $row['alergo240'], $row['alergo266'], $row['alergo274'], $row['alergo292'], $row['alergo1'], $row['alergo11'], $row['alergo12'], $row['alergo13'], $row['alergo50'], $row['alergo51'], $row['alergo52'], $row['alergo53'], $row['alergo90'], $row['alergo97'], $row['alergo99'], $row['alergo102'], $row['alergo103'],$row['alergo126'], $row['alergo134'], $row['alergo135'], $row['alergo176'], $row['alergo177'], $row['alergo181'], $row['alergo201'], $row['alergo205'], $row['alergo206'], $row['alergo208'], $row['alergo239'], $row['alergo244'], $row['alergo245'], $row['alergo250'], $row['alergo257'], $row['alergo277'], $row['alergo285'], $row['alergo16'], $row['alergo17'], $row['alergo18'], $row['alergo19'], $row['alergo40'], $row['alergo41'], $row['alergo42'], $row['alergo82'], $row['alergo83'],$row['alergo200'], $row['alergo221'], $row['alergo222'], $row['alergo246'], $row['alergo247'], $row['alergo261'], $row['alergo263'], $row['alergo286'], $row['alergo108'], $row['alergo109'], $row['alergo110'], $row['alergo111'], $row['alergo112'], $row['alergo113'], $row['alergo114'], $row['alergo115'], $row['alergo116'], $row['alergo117'], $row['alergo118'], $row['alergo2'], $row['alergo59'], $row['alergo149'], $row['alergo150'], $row['alergo180'], $row['alergo284'], $row['alergo70'], $row['alergo193'], $row['alergo194'], $row['alergo195'], $row['alergo196'], $row['alergo197'], $row['alergo262'], $row['alergo14'], $row['alergo15'], $row['alergo43'], $row['alergo44'], $row['alergo45'], $row['alergo46'], $row['alergo88'], $row['alergo89'], $row['alergo225'], $row['alergo33'], $row['alergo34'], $row['alergo35'], $row['alergo36'], $row['alergo37'], $row['alergo38'], $row['alergo39'], $row['alergo86'], $row['alergo151'], $row['alergo152'], $row['alergo153'], $row['alergo154'], $row['alergo155'], $row['alergo179'], $row['alergo231'], $row['alergo242'], $row['alergo124'], $row['alergo125'], $row['alergo166'], $row['alergo210'], $row['alergo218'], $row['alergo265'], $row['alergo281'], $row['alergo282'], $row['alergo283'], $row['alergo291'], $row['alergo75'], $row['alergo78'], $row['alergo209'], $row['alergo230'], $row['alergo241'], $row['alergo269'], $row['alergo270'], $row['alergo3'], $row['alergo4'], $row['alergo5'], $row['alergo6'], $row['alergo7'], $row['alergo80'], $row['alergo87'], $row['alergo100'], $row['alergo132'], $row['alergo133'], $row['alergo182'], $row['alergo189'], $row['alergo190'], $row['alergo191'], $row['alergo192'], $row['alergo198'], $row['alergo202'], $row['alergo251'], $row['alergo252'], $row['alergo254'], $row['alergo255'], $row['alergo256'], $row['alergo259'], $row['alergo287'], $row['alergo290'], $row['alergo8'], $row['alergo9'], $row['alergo10'], $row['alergo25'], $row['alergo26'], $row['alergo27'], $row['alergo28'], $row['alergo68'], $row['alergo106'], $row['alergo107'], $row['alergo178'], $row['alergo207'], $row['alergo229'], $row['alergo271'], $row['alergo272'], $row['alergo273'], $row['alergo21'], $row['alergo22'], $row['alergo48'], $row['alergo49'], $row['alergo79'], $row['alergo91'], $row['alergo92'], $row['alergo93'], $row['alergo94'], $row['alergo95'], $row['alergo96'], $row['alergo173'], $row['alergo174'], $row['alergo175'], $row['alergo187'], $row['alergo188'], $row['alergo243'], $row['alergo253'], $row['alergo101'], $row['alergo156'], $row['alergo219'], $row['alergo220'], $row['alergo267'], $row['alergo268'], $row['alergo61'], $row['alergo62'], $row['alergo64'], $row['alergo67'], $row['alergo69'], $row['alergo77'], $row['alergo123'], $row['alergo216'], $row['alergo138'], $row['alergo139'], $row['alergo140'], $row['alergo141'], $row['alergo142'], $row['alergo144'], $row['alergo145'], $row['alergo23'], $row['alergo24'], $row['alergo105'], $row['alergo105'], $row['alergo136'], $row['alergo137'], $row['alergo164'], $row['alergo183'], $row['alergo185'], $row['alergo204'], $row['alergo213'], $row['alergo217'], $row['alergo224'], $row['alergo226'], $row['alergo260'], $row['alergo264'], $row['alergo278'], $row['alergo63'], $row['alergo66'], $row['alergo122'], $row['alergo143'], $row['alergo199'], $row['alergo212'], $row['alergo215'], $row['alergo276'], $row['alergo29'], $row['alergo30'], $row['alergo31'], $row['alergo32'], $row['alergo119'], $row['alergo248'], $row['alergo249'], $row['alergo288'], $row['alergo289'], $row['alergo54'], $row['alergo55'], $row['alergo56'], $row['alergo57'], $row['alergo58'], $row['alergo227'], $row['alergo228'], $row['alergo71'], $row['alergo72'], $row['alergo73'], $row['alergo74'], $row['alergo81'], $row['alergo98'],$row['alergo127'], $row['alergo128'], $row['alergo129'], $row['alergo130'], $row['alergo203'], $row['alergo211'], $row['alergo258'], $row['alergo60'], $row['alergo65'], $row['alergo76'], $row['alergo120'], $row['alergo121'], $row['alergo214'], $row['alergo275'], $row['alergo157'], $row['alergo158'], $row['alergo159'], $row['alergo160'], $row['alergo161'],$row['alergo162'], $row['alergo163'], $row['alergo131'], $row['alergo167'], $row['alergo20'], $row['alergo165']));		
+						}while ($row = $result->fetch_assoc());					
+					} else {
+						printError($mysqli->error); 
+					}
+				// } else {
+				// 	printError("not data"); 
+				// }
 			}
-			echo json_encode($alergoResults);
+			if(!empty($alergoResults)) {
+				echo json_encode($alergoResults);
+			}
 		} else {
 			printError("no data");
 		}

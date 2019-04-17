@@ -1,5 +1,5 @@
 body {
-    color: #000;
+    color: #3a5f3a;
     background-color: #e5f5e8;
 }
 
@@ -33,7 +33,7 @@ nav>ul>li>a {
 }
 
 .nav>li>a {
-	color:#333;
+	color:#3a5f3a;
 	text-decoration: none;
     border-bottom: 1px solid #255625;
     background-color: #e5f5e8;
@@ -63,7 +63,7 @@ nav>ul>li>a {
 
 .col-md-4>div {
 	border-radius: 5px;
-	border: 1px solid;
+	border: 1px solid #0e680e;
 	padding: 20px;
 	margin-top: 10px;
 	margin-left: 10px;
@@ -128,7 +128,7 @@ nav>ul>li>a {
 	background-color: #e2ab66;
 }
 
-.addClient, .find-alergo {
+.addClient, .find-alergo, .clear-find-inputs {
 	width: 100%;
 	height: 45px;
 	margin-bottom: 0px; 
@@ -140,12 +140,6 @@ nav>ul>li>a {
 	left: 13px;
 	font-weight: bold;
 	background-color: #e5f5e8;
-}
-
-.mainData> table {
-	background-color: #fff;
-	width: 100%;
-	cursor: pointer;
 }
 
 .region-wrap {
@@ -225,4 +219,31 @@ nav>ul>li>a {
 
 .wrap-autocomplite:hover {
 	color: #5cb85c;
+}
+
+.load-wrap, .data-wrap {
+	display: none;
+}
+
+.load-wrap, .msg-wrap {
+    text-align: center;
+    padding: 130px 0;
+    color: #439643;
+}
+
+.table-wrap {
+	overflow-x: scroll;
+	padding: 0px 10px; 
+    max-height: 800px;
+}
+
+.table-wrap> table {
+	background-color: #fff;
+	cursor: pointer;
+	width: 100%;
+}
+
+.data-download {
+	float: right;
+	margin: 10px; 
 }
