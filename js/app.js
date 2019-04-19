@@ -55,20 +55,71 @@ $(document).on("keyup", ".client-id", function() {
 			}
 		})
 	} else {
-		$(this).removeData("id");
+		$(this).removeAttr("data-id");
 	}
 })
 
 $(document).on("click", ".find-alergo", function() {
-	$.ajax({
-		type: "POST",
-		url: "getData.php",
-		data: {"msg": "searchAlergo", "data": getFindData()},
-		success: function(arr) {
-			console.log(JSON.parse(arr));
+	var region = JSON.parse(window.sessionStorage.getItem('auth'));
+	if(!$.isEmptyObject(getFindData())){
+		if($(".data-wrap").css("display") == "block") {
+			$(".data-wrap").toggle();
+			$(".msg-wrap").toggle();
+			$(".msg").text("Виберіть данні для пошуку!");
 		}
-	})
+		$.ajax({
+			type: "POST",
+			url: "getData.php",
+			data: {"msg": "searchAlergo", "data": getFindData(), "regionType": region["type"]},
+			beforeSend: function() {
+				$(".load-wrap").toggle();
+				$(".msg-wrap").toggle();
+			},
+			success: function(arr) {
+				var data = JSON.parse(arr);
+				if(!data.error) {			
+					$(".remove-rows").remove();
+					$(".load-wrap").toggle();
+					$(".data-wrap").toggle();
+					var str = "";
+					for(var i=0; i<data.length; i++) {
+						str += "<tr class='remove-rows'>";
+						for(var j=0; j<data[i].length; j++) {
+							str += "<td>"+data[i][j]+"</td>";
+						}
+						str += "</tr>";
+					}		
+					$(str).appendTo("tbody");
+				} else {
+					$(".data-wrap").css("display", "none");
+					$(".load-wrap").css("display", "none");
+					$(".remove-rows").remove();				
+					$(".msg-wrap").css("display", "block")
+					$(".msg").text("Дані відсутні!");
+				}
+			}
+		})
+	} else {
+		if($(".data-wrap").css("display") == "block") {
+			$(".data-wrap").toggle();
+		}
+		$(".msg-wrap").css("display", "block");
+		$(".msg").text("Виберіть данні для пошуку!");
+	}
 })
+
+$(document).on("click", ".data-download", function() {
+	doit('xlsx')
+})
+
+$(document).on("click", ".clear-find-inputs", function() {
+	clearFindData();
+})
+
+function init() {
+	if(!window.sessionStorage.getItem('auth'))
+		window.open('../index.html', "_self");
+}
 
 function getData() {
 	var fileData = $("#results").prop("files")[0]; 
@@ -116,160 +167,6 @@ function getData() {
 	}
 	return formData;
 }
-
-function init() {
-	if(!window.sessionStorage.getItem('auth'))
-		window.open('../index.html', "_self");
-}
-
-function createTable(data, heads, code) {
-	var table = document.createElement("table");
-	table.classList.add("table");
-	table.classList.add("table-striped");
-	table.classList.add("table-bordered");
-	table.classList.add("table-responsive");
-	table.classList.add("table-hover");
-	var thead = document.createElement('thead');
-	thead.classList.add("text-center");
-	var tbody = document.createElement('tbody');
-	var theadTr = document.createElement('tr');
-	for(var j=0; j<heads.length; j++) {
-		var theadTd = document.createElement('th');
-		theadTd.appendChild(document.createTextNode(heads[j]));
-		theadTr.appendChild(theadTd);
-	}
-	thead.appendChild(theadTr);
-	table.appendChild(thead);
-	if(code) {
-		for(var i=0; i<data.length; i++) {
-			for(item in data[i]) {
-				tbodyTr = document.createElement('tr');
-				tbodyTd = document.createElement('td');
-				tbodyTd.innerText = item;
-				tbodyTr.appendChild(tbodyTd);
-				tbodyTd.colSpan = 3;
-				tbody.appendChild(tbodyTr);
-				for(value in data[i][item]) {
-					tbodyTr = document.createElement('tr');
-					tbodyTd = document.createElement('td');
-					tbodyTd.innerText = value;
-					tbodyTd.colSpan = 3;
-					tbodyTr.appendChild(tbodyTd);
-					tbody.appendChild(tbodyTr);
-					for(var val in data[i][item][value]) {
-						tbodyTr = document.createElement('tr');
-						tbodyTd1 = document.createElement('td');
-						tbodyTd2 = document.createElement('td');
-						tbodyTd3 = document.createElement('td');
-						tbodyTd1.innerText = val;
-						tbodyTd2.innerText = data[i][item][value][val][1];
-						tbodyTd3.innerText = data[i][item][value][val][0];
-						tbodyTr.appendChild(tbodyTd1);
-						tbodyTr.appendChild(tbodyTd2);
-						tbodyTr.appendChild(tbodyTd3);
-						tbody.appendChild(tbodyTr);
-					}				
-				}
-			}
-		}
-	} else {
-		for(var i=0; i<data.length; i++) {
-			tbodyTr = document.createElement('tr');
-			tbodyTr.setAttribute('data-id', data[i]['id']);
-			tbodyTd1 = document.createElement('td');
-			tbodyTd2 = document.createElement('td');
-			tbodyTd3 = document.createElement('td');
-			tbodyTd4 = document.createElement('td');
-			tbodyTd5 = document.createElement('td');
-			tbodyTd6 = document.createElement('td');
-			tbodyTd1.innerText = data[i]['client'];
-			tbodyTd2.innerText = data[i]['email'];
-			tbodyTd3.innerText = data[i]['phoneClient'];
-			tbodyTd4.innerText = data[i]['date'];
-			tbodyTd5.innerText = data[i]['doctor'];
-			tbodyTd6.innerText = data[i]['phoneDoctor'];
-			tbodyTr.appendChild(tbodyTd1);
-			tbodyTr.appendChild(tbodyTd2);
-			tbodyTr.appendChild(tbodyTd3);
-			tbodyTr.appendChild(tbodyTd4);
-			tbodyTr.appendChild(tbodyTd5);
-			tbodyTr.appendChild(tbodyTd6);
-			tbody.appendChild(tbodyTr);			
-		}
-	}
-	table.appendChild(tbody);
-	return table;
-}
-
-// function num2str(n, text_forms) {
-//     n = Math.abs(n) % 100;
-//     var n1 = n % 10;
-    
-//     if(n > 10 && n < 20) {
-//         return text_forms[2];
-//     }
-    
-//     if(n1 > 1 && n1 < 5) {
-//         return text_forms[1];
-//     }
-    
-//     if(n1 == 1) {
-//         return text_forms[0];
-//     }
-    
-//     return text_forms[2];
-// }
-
-// function getInputData() {
-// 	var arrInput = [];
-// 	$("[name='alergo']:checked").each(function() {
-// 		arrInput.push($(this).val());
-// 	})
-// 	return arrInput;
-// }
-
-// $(document).on("change", "[name='alergo']", function() {
-// 	var countAlegro = $("[name='alergo']:checked").length;
-// 	if(countAlegro != 0){
-// 		$(".find-alergo-button").val("Пошук по: "+countAlegro+" "+num2str(countAlegro, ['алергенту', 'алергентах', 'алергентів']));
-// 	} else {
-// 		$(".find-alergo-button").val("Пошук");
-// 	}
-// })
-
-// $(document).on("click", ".find-alergo-button", function(e) {
-// 	e.stopPropagation();
-// 	e.preventDefault();
-// 	var user = JSON.parse(window.sessionStorage.getItem('auth'));
-// 	$.ajax({
-// 	    url: "getData.php", 
-// 	    dataType: "json",
-// 	    data: {"msg": "searchAlergoUser", "data": getInputData, "region": user["type"]}, 
-// 	    type: 'POST', 
-//       	success: function(arr) {
-//       		if(arr.length != 0) {
-//       			$(".mainData").html(createTable(arr, ["П.І.Б. клієнта", "E-mail", "Телефон клієнта", "Дата тестування", "П.І.Б. лікаря", "Телефон лікаря"], false));
-//       		} else {
-//       			$(".mainData").html("<div class='no-data text-center'><p>Дані відсутні!</p></div>");
-//       		}	
-//       		$('.panel-collapse.in').collapse('hide');
-//       		$('html, body').animate({ scrollTop: 0 }, 'fast');
-//       	} 		
-// 	})	
-// })
-
-// $(document).on("click", ".table", function(e) {
-// 	$.ajax({
-// 	    url: "getData.php", 
-// 	    dataType: "json",
-// 	    data: {"msg": "getUserResult", "id": $(e.target).parent().data("id")}, 
-// 	    type: 'POST', 
-//       	success: function(arr) {
-//       		$(document).find(".modal-body").html(createTable(arr, ["Позначення", "Алерген", "kUA/L"], true));
-//       		$(document).find('.modal').modal('show');
-//       	} 		
-// 	})
-// })
 
 function checkInputs() {
 	var state = true;
@@ -368,8 +265,8 @@ function getFindData() {
 	var features = [],
 		obj = {};
 
-	if($(".client-id").data("id")) {
-		obj["id_user"] = $(".client-id").data("id");
+	if($(".client-id").attr("data-id")) {
+		obj["id_user"] = $(".client-id").attr("data-id");
 	}	
 
 	if($(".client-age").val()) {
@@ -393,5 +290,20 @@ function getFindData() {
 	return obj;
 }
 
+function clearFindData() {
+	$(".client-id").val("").removeAttr("data-id");
+	$(".client-age").val("");
+	$("[name='client-gender']").prop("checked", false);
+	$("[name='client-work']").prop("checked", false);
+	$(".alergoFind").prop("checked", false);
+}
+
+function doit(type, fn, dl) {
+    var elt = document.getElementById('data-table');
+    var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+    return dl ?
+        XLSX.write(wb, {bookType:type, bookSST:true, type: 'base64'}) :
+        XLSX.writeFile(wb, fn || ('results.' + (type || 'xlsx')));
+}
 
 init();
