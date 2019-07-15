@@ -247,3 +247,21 @@ nav>ul>li>a {
 	float: right;
 	margin: 10px; 
 }
+
+.user-list {
+	overflow-y: scroll;
+	max-height: 800px;  
+	min-height: 100px;  
+}
+
+.user-list-item {
+	border-bottom: solid 2px #0e680c;
+    background-color: #fff;
+    padding: 5px;
+    color: #3a5f88;
+    font-weight: bold;
+}
+
+.user-list-item:hover {
+	outline: solid 2px #0e680c;
+}
