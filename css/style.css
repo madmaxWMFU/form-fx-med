@@ -249,19 +249,26 @@ nav>ul>li>a {
 }
 
 .user-list {
-	overflow-y: scroll;
-	max-height: 800px;  
-	min-height: 100px;  
+	overflow-y: auto;
+	height: 700px;   
 }
 
 .user-list-item {
-	border-bottom: solid 2px #0e680c;
+	border-bottom: solid 1px #0e680c;
     background-color: #fff;
     padding: 5px;
-    color: #3a5f88;
+    color: #3a5f3a;
     font-weight: bold;
 }
 
 .user-list-item:hover {
-	outline: solid 2px #0e680c;
+	background-color: #b8ffaa;
+	cursor: pointer;
+}
+
+.editClient {
+    width: 98%;
+    margin: 10px 0px 0 10px;
+    height: 50px;
+    font-size: 20px;
 }
