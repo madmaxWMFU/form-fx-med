@@ -433,7 +433,8 @@
 			break;
 		case "searchAlergo": 			
 			$data = $_POST['data'];
-			if(isset($data["alergo"]) && !isset($data["id_user"]) && !isset($data["age"]) && !isset($data["gender"]) && !isset($data["work"]) && !isset($data["clientFeatures"])) {
+			// print_r($data);
+			if(isset($data["alergo"]) && !isset($data["id_user"]) && !isset($data["age1"]) && !isset($data["gender"]) && !isset($data["work"]) && !isset($data["clientFeatures"])) {
 				if($_POST["regionType"] == 0) {
 					$region = getFeatures($data["alergo"], " > 0.1 ");
 				} else {
@@ -461,10 +462,12 @@
 				$query = "SELECT id_user FROM user_info WHERE ".$region;
 				
 				foreach ($data as $key => $value) {
-					if($key === "age" && sizeof($data) === 1 && $region === "") {
+					if($key === "age1" || $key === "age2" && sizeof($data) === 2 && $region === "") {
 						$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info ";
-					} elseif($key === "age") {
-						$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info WHERE ".$region;					
+						// echo "f -> ".$query;
+					} elseif($key === "age1" || $key === "age2") {
+						$query = "SELECT id_user, date_birthday, (YEAR(CURRENT_DATE) - YEAR(date_birthday)) - (DATE_FORMAT(CURRENT_DATE, '%m%d') < DATE_FORMAT(date_birthday, '%m%d')) as age from user_info WHERE ".$region;			
+						// echo "s -> ".$query;		
 					} else {
 						if(is_array($value) && $key === "clientFeatures") {
 							$query .= getFeatures($value, " = 1 ");
@@ -488,10 +491,12 @@
 				// echo $query;
 				if($result = $mysqli->query($query)) {
 					$row = $result->fetch_assoc();
+					// print_r($row);
 					$mainArray = array();
-					if(isset($data['age'])) {
+					if(isset($data['age1']) && isset($data['age2']) && isset($row['age'])) {
 						do{
-							if($row['age'] == $data['age']){
+							if($row['age'] >= $data['age1'] && $row['age'] <= $data['age2']) {
+							// if($row['age'] == $data['age'])
 								array_push($mainArray, $row);
 							}
 						}while($row = $result->fetch_assoc());		

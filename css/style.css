@@ -272,3 +272,8 @@ nav>ul>li>a {
     height: 50px;
     font-size: 20px;
 }
+
+.client-age__first, .client-age__second {
+	display: inline-block;
+	width: 25%;
+}

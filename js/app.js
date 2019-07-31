@@ -269,8 +269,9 @@ function getFindData() {
 		obj["id_user"] = $(".client-id").attr("data-id");
 	}	
 
-	if($(".client-age").val()) {
-		obj["age"] = $(".client-age").val();
+	if($(".client-age__first").val() !== "" && $(".client-age__second").val() !== "") {
+		obj["age1"] = $(".client-age__first").val();
+		obj["age2"] = $(".client-age__second").val();
 	}
 
 	if($("[name='client-gender']:checked").length === 1) {
@@ -292,7 +293,8 @@ function getFindData() {
 
 function clearFindData() {
 	$(".client-id").val("").removeAttr("data-id");
-	$(".client-age").val("");
+	$(".client-age__first").val("");
+	$(".client-age__second").val("");
 	$("[name='client-gender']").prop("checked", false);
 	$("[name='client-work']").prop("checked", false);
 	$(".alergoFind").prop("checked", false);
